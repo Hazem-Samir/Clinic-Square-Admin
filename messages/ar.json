@@ -1,0 +1,67 @@
+{
+  
+  "common": {
+    "switchLanguage": "تغيير اللغة",
+  "EGP":"جنيه مصري"
+
+  },
+  "nav":{
+    "Home":"الصفحة الرئيسية",
+    "Patients":"المرضي",
+    "Doctors":"الدكاترة",
+    "Labs":"المعامل",
+    "Pharmacies":"الصيدليات",
+    "Medicines":"الادوية",
+    "Tests":"التحاليل"
+    },
+  "search":{
+    "For_Patient":"ابحث عن مريض",
+    "For_Doctor":"ابحص عن دكتور",
+    "For_Question":"ابحث عن سؤال",
+    "For_Lab":"ابحث عن معمل",
+    "For_Pharmacy":"ابحث عن صيدلية",
+  "For_Test":"ابحث عن تحليل"
+   
+  },
+  "ModeToogle":{
+  "title":"اختيار الثيم",
+    "ٍSystem":"الافتراضي",
+    "Dark":"داكن",
+    "Light":"فاتح"     
+  },
+  "TopBarDropMenu":{
+    "MyAccount":"حسابي",
+    "Profile":"الملف الشخصي",
+    "Logout":"تسجيل الخروج"
+  },
+      "doctor": {
+        "title": "لوحة تحكم الطبيب"
+      },
+      "schedule": {
+        "title": "تحديد جدولك",
+        "selectDay": "اختر اليوم",
+        "startTime": "وقت البدء",
+        "endTime": "وقت الانتهاء",
+        "addToSchedule": "أضف إلى الجدول",
+        "currentSchedule": "الجدول الحالي",
+        "sessionCost": "تكلفة الجلسة",
+        "confirmDeletion": "تأكيد الحذف",
+        "deleteConfirmation": "هل أنت متأكد أنك تريد حذف الجدول ليوم {day}؟",
+        "cancel": "إلغاء",
+        "delete": "حذف",
+        "update": "تحديث",
+        "updateSchedule": "تحديث الجدول ليوم {day}",
+        "setSessionCost": "تحديد تكلفة الجلسة",
+        "sessionCostLabel": "تكلفة الجلسة (جنيه مصري)",
+        "setCost": "تحديد التكلفة",
+        "days": {
+          "Monday": "الاثنين",
+          "Tuesday": "الثلاثاء",
+          "Wednesday": "الأربعاء",
+          "Thursday": "الخميس",
+          "Friday": "الجمعة",
+          "Saturday": "السبت",
+          "Sunday": "الأحد"
+        }
+      }
+    }
