@@ -229,7 +229,7 @@ export const AddMedicine = async (formData:FormData)=>{
 
     export const GetMyCart = async () => {
       const token = getToken();
-      const response = await fetch(`http://localhost:3000/api/patient/cart`, {
+      const response = await fetch(`/api/patient/cart`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -254,7 +254,7 @@ export const AddMedicine = async (formData:FormData)=>{
           type:"medicine"
         }).toString();
         try {
-          const response = await fetch(`http://localhost:3000/api/patient/cart?${queryParams}`, {
+          const response = await fetch(`/api/patient/cart?${queryParams}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -306,7 +306,7 @@ export const AddMedicine = async (formData:FormData)=>{
           id,
         }).toString();
         try {
-          const response = await fetch(`http://localhost:3000/api/patient/cart/checkout/medicine?${queryParams}`, {
+          const response = await fetch(`/api/patient/cart/checkout/medicine?${queryParams}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -350,7 +350,7 @@ export const AddMedicine = async (formData:FormData)=>{
           reservationDate,
         }).toString();
         try {
-          const response = await fetch(`http://localhost:3000/api/patient/cart/checkout/test?${queryParams}`, {
+          const response = await fetch(`/api/patient/cart/checkout/test?${queryParams}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -492,7 +492,7 @@ export const AddMedicine = async (formData:FormData)=>{
         const queryParams = new URLSearchParams({
           patient: patient,
         }).toString();
-        const response = await fetch(`http://localhost:3000/api/lab/reservations?${queryParams}`, {
+        const response = await fetch(`/api/lab/reservations?${queryParams}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,

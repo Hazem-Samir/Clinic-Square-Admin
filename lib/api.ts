@@ -1,3 +1,4 @@
+import { FRONT_URL } from '@/schema/Essentials'
 import { cookies } from 'next/headers'
 type actor= "patient" | "pharmacy" | "lab" | "doctor" 
 type product= "medicines" | "tests"  
@@ -8,7 +9,7 @@ export const getAllDoctors = async (limit:number,page: number) => {
     limit: limit.toString(),
     page: page.toString(),
   }).toString();
-  const response = await fetch(`http://localhost:3000/api/patient/doctors?${queryParams}`, {
+  const response = await fetch(`${FRONT_URL}/api/patient/doctors?${queryParams}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -34,7 +35,7 @@ export const getAllReservations = async (limit:number,page: number,actor:actor) 
     page: page.toString(),
     actor: `${actor}-Reservation`
   }).toString();
-  const response = await fetch(`http://localhost:3000/api/admin/reservations?${queryParams}`, {
+  const response = await fetch(`${FRONT_URL}/api/admin/reservations?${queryParams}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -57,7 +58,7 @@ export const getAllOrders = async (limit:number,page: number) => {
     limit: limit.toString(),
     page: page.toString(),
   }).toString();
-  const response = await fetch(`http://localhost:3000/api/admin/orders?${queryParams}`, {
+  const response = await fetch(`${FRONT_URL}/api/admin/orders?${queryParams}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -84,7 +85,7 @@ export const getAllActorData = async (limit:number,page: number,actor:actor,stat
     actor,
     state
   }).toString();
-  const response = await fetch(`http://localhost:3000/api/admin/actor?${queryParams}`, {
+  const response = await fetch(`${FRONT_URL}/api/admin/actor?${queryParams}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -110,7 +111,7 @@ export const getAllActorStats = async (limit:number,page: number,actor:actor) =>
     page: page.toString(),
     actor,
   }).toString();
-  const response = await fetch(`http://localhost:3000/api/admin/actor/stats?${queryParams}`, {
+  const response = await fetch(`${FRONT_URL}/api/admin/actor/stats?${queryParams}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -131,7 +132,7 @@ export const Logout = async () => {
   const cookieStore = cookies()
   const token = JSON.parse (cookieStore.get('token').value)
   
-  const response = await fetch(`http://localhost:3000/api/logout`, {
+  const response = await fetch(`${FRONT_URL}/api/logout`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -154,7 +155,7 @@ export const getPatientStats = async (limit:number,page: number) => {
     limit: limit.toString(),
     page: page.toString(),
   }).toString();
-  const response = await fetch(`http://localhost:3000/api/admin/patient/stats?${queryParams}`, {
+  const response = await fetch(`${FRONT_URL}/api/admin/patient/stats?${queryParams}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -178,7 +179,7 @@ export const getAllReservationsStats = async (limit:number,page: number,actor:ac
     page: page.toString(),
     actor: `${actor}-Reservation`
   }).toString();
-  const response = await fetch(`http://localhost:3000/api/admin/reservations/stats?${queryParams}`, {
+  const response = await fetch(`${FRONT_URL}/api/admin/reservations/stats?${queryParams}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -201,7 +202,7 @@ export const getAllOrdersStats = async (limit:number,page: number) => {
     limit: limit.toString(),
     page: page.toString(),
   }).toString();
-  const response = await fetch(`http://localhost:3000/api/admin/orders/stats?${queryParams}`, {
+  const response = await fetch(`${FRONT_URL}/api/admin/orders/stats?${queryParams}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -225,7 +226,7 @@ export const getAllPatientsData = async (limit:number,page: number) => {
     limit: limit.toString(),
     page: page.toString(),
   }).toString();
-  const response = await fetch(`http://localhost:3000/api/admin/patient?${queryParams}`, {
+  const response = await fetch(`${FRONT_URL}/api/admin/patient?${queryParams}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -250,7 +251,7 @@ export const getAllProductData = async (limit:number,page: number,product:produc
     product,
     state
   }).toString();
-  const response = await fetch(`http://localhost:3000/api/admin/product?${queryParams}`, {
+  const response = await fetch(`${FRONT_URL}/api/admin/product?${queryParams}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -273,7 +274,7 @@ export const getAllProductData = async (limit:number,page: number,product:produc
       const queryParams = new URLSearchParams({
         id
       }).toString();
-      const response = await fetch(`http://localhost:3000/api/medicalQuestions/questionDetails?${queryParams}`, {
+      const response = await fetch(`${FRONT_URL}/api/medicalQuestions/questionDetails?${queryParams}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

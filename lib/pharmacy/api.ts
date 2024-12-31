@@ -1,3 +1,4 @@
+import { FRONT_URL } from '@/schema/Essentials';
 import { cookies } from 'next/headers'
 
 export const getOrdersHistory = async (limit:number,page: number) => {
@@ -7,7 +8,7 @@ export const getOrdersHistory = async (limit:number,page: number) => {
         limit: limit.toString(),
         page: page.toString(),
       }).toString();
-      const response = await fetch(`http://localhost:3000/api/pharmacy/ordersHistory?${queryParams}`, {
+      const response = await fetch(`${FRONT_URL}/api/pharmacy/ordersHistory?${queryParams}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -32,7 +33,7 @@ export const getOrdersHistory = async (limit:number,page: number) => {
         page: page.toString(),
         state,
       }).toString();
-      const response = await fetch(`http://localhost:3000/api/pharmacy/orders?${queryParams}`, {
+      const response = await fetch(`${FRONT_URL}/api/pharmacy/orders?${queryParams}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -53,7 +54,7 @@ export const getOrdersHistory = async (limit:number,page: number) => {
     export const getSchedule = async () => {
       const cookieStore = cookies()
       const token = JSON.parse (cookieStore.get('token').value)
-      const response = await fetch(`http://localhost:3000/api/lab/schedule`, {
+      const response = await fetch(`${FRONT_URL}/api/lab/schedule`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -73,7 +74,7 @@ export const getOrdersHistory = async (limit:number,page: number) => {
     export const getAvaliableMedicines = async () => {
       const cookieStore = cookies()
       const token = JSON.parse (cookieStore.get('token').value)
-      const response = await fetch(`http://localhost:3000/api/pharmacy/medicines/available`, {
+      const response = await fetch(`${FRONT_URL}/api/pharmacy/medicines/available`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -102,7 +103,7 @@ export const getOrdersHistory = async (limit:number,page: number) => {
         limit: limit.toString(),
         page: page.toString(),
       }).toString();
-      const response = await fetch(`http://localhost:3000/api/pharmacy/medicines?${queryParams}`, {
+      const response = await fetch(`${FRONT_URL}/api/pharmacy/medicines?${queryParams}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

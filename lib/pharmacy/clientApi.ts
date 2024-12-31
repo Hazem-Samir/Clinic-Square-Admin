@@ -127,7 +127,7 @@ export const addDay = async (data)=>{
         const queryParams = new URLSearchParams({
           patient: patient,
         }).toString();
-        const response = await fetch(`http://localhost:3000/api/lab/reservations?${queryParams}`, {
+        const response = await fetch(`/api/lab/reservations?${queryParams}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
