@@ -1,0 +1,16 @@
+{
+  "node": {
+    "cdb0ffd03950601f1465849c3883933d78902d03": {
+      "workers": {
+        "app/[locale]/admin/medicines/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fapp%2Factions%2Flogout.ts%22%2C%5B%22logout%22%5D%5D%5D&__client_imported__=true!",
+        "app/[locale]/admin/tests/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fapp%2Factions%2Flogout.ts%22%2C%5B%22logout%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/[locale]/admin/medicines/page": "action-browser",
+        "app/[locale]/admin/tests/page": "action-browser"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "nX6Ffa1LWvC+XkMg+nakkqhxoVfT8X41KLsNh71QgD0="
+}

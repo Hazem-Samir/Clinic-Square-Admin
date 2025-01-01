@@ -20,7 +20,9 @@
     "For_Question":"ابحث عن سؤال",
     "For_Lab":"ابحث عن معمل",
     "For_Pharmacy":"ابحث عن صيدلية",
-  "For_Test":"ابحث عن تحليل"
+  "For_Test":"ابحث عن تحليل",
+  "For_Medicine":"ابحث عن ادوية"
+
    
   },
   "ModeToogle":{

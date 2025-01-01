@@ -1,0 +1,6 @@
+{
+  "/api/admin/product/medicine/route": "app/api/admin/product/medicine/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/[locale]/admin/medicines/page": "app/[locale]/admin/medicines/page.js",
+  "/[locale]/admin/tests/page": "app/[locale]/admin/tests/page.js"
+}

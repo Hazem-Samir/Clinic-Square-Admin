@@ -194,7 +194,7 @@ export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
 <div className="flex flex-col space-y-2">
   <div className="flex w-full justify-center sm:justify-end">
 
-<SearchBar onSearch={handleSearch} setResult={setSearchResult} searchTerm={searchTerm} setSearchTerm={setSearchTerm} title={`Search for ${role}`}/>
+<SearchBar onSearch={handleSearch} setResult={setSearchResult} searchTerm={searchTerm} setSearchTerm={setSearchTerm} title={`For_${role}`}/>
   </div>
 
 {    isLoading ? (

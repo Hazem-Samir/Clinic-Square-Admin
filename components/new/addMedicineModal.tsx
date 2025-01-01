@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -13,27 +13,27 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { FormDataHandler, ImageHandler } from "@/utils/AuthHandlers"
 import { AddMedicine } from "@/lib/admin/clientApi"
 import { useRouter } from 'next/navigation'
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast'
 import Spinner from "../Spinner"
 
-const categories= [
-      "Cosmetics",
-      "Hair Care",
-      "Every Day Essentials",
-      "Medical Equipment & Supplies",
-      "Mom & Baby",
-      "Sexual Health",
-      "Medicine",
-      "Skin Care",
-    ]
+const categories = [
+  "Cosmetics",
+  "Hair Care",
+  "Every Day Essentials",
+  "Medical Equipment & Supplies",
+  "Mom & Baby",
+  "Sexual Health",
+  "Medicine",
+  "Skin Care",
+]
 
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
   }),
   photo: z.custom<File>(ImageHandler, {
-      message: 'Invalid image file. Must be JPEG, PNG, or GIF and less than 5MB.',
-    }),
+    message: 'Invalid image file. Must be JPEG, PNG, or GIF and less than 5MB.',
+  }),
   cost: z.number().min(1, {
     message: "Cost must be a positive number.",
   }),
@@ -45,7 +45,7 @@ const formSchema = z.object({
 export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [photoPreview, setPhotoPreview] = useState<string | null>(null)
   const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -58,44 +58,60 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
-    setIsLoading(true);
-    const formData=FormDataHandler(values);
-    const res= await AddMedicine(formData);
-    if(res.success){  
-      toast.success(res.message,{
-        duration: 2000,
-        position: 'bottom-center',
-      });
-      form.reset({   name: "",
-            photo: undefined,
-            cost: 0,
-            category: "",})
-            setPhotoPreview(null)
-      onClose()
-      router.refresh();
+    try {
+      setIsLoading(true)
+      const formData = FormDataHandler(values)
+      const res = await AddMedicine(formData)
+      if (res.success) {
+        toast.success(res.message, {
+          duration: 2000,
+          position: 'bottom-center',
+        })
+        form.reset({
+          name: "",
+          photo: undefined,
+          cost: 0,
+          category: "",
+        })
+        setPhotoPreview(null)
+        onClose()
+        router.refresh()
+      } else {
+        res.error.forEach((err: string) => 
+          toast.error(err.msg || err || 'An unexpected error occurred.', {
+            duration: 2000,
+            position: 'bottom-center',
+          })
+        )
+      }
+    } catch (error) {
+      toast.error('Failed to upload image. Please try again.')
+    } finally {
+      setIsLoading(false)
     }
-    else {
-      res.error.forEach((err:string) => toast.error(err.msg || err || 'An unexpected error occurred.',{
-        duration: 2000,
-        position: 'bottom-center',
-      }))
-    }
-    setIsLoading(false);
-
-    // Here you would typically send the data to your backend
   }
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setPhotoPreview(reader.result as string)
+      // Revoke the previous preview URL to prevent memory leaks
+      if (photoPreview) {
+        URL.revokeObjectURL(photoPreview)
       }
-      reader.readAsDataURL(file)
+      // Use URL.createObjectURL instead of FileReader for better performance
+      const previewUrl = URL.createObjectURL(file)
+      setPhotoPreview(previewUrl)
     }
   }
+
+  // Cleanup preview URL when component unmounts
+  useEffect(() => {
+    return () => {
+      if (photoPreview) {
+        URL.revokeObjectURL(photoPreview)
+      }
+    }
+  }, [photoPreview])
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -112,7 +128,7 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Dr. John Doe" {...field} />
+                    <Input placeholder="Medicine name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -121,7 +137,7 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
             <FormField
               control={form.control}
               name="photo"
-              render={({ field: {  onChange, ...field } }) => (
+              render={({ field: { onChange, value, ...field } }) => (
                 <FormItem>
                   <FormLabel>Photo</FormLabel>
                   <FormControl>
@@ -133,19 +149,16 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
                           handleFileChange(e)
                           onChange(e.target.files?.[0])
                         }}
-                        
                         {...field}
                       />
-                      
                     </div>
                   </FormControl>
                   {photoPreview && (
-                    <div className="mt-4">
+                    <div className="mt-4 relative w-[100px] h-[100px]">
                       <Image
                         src={photoPreview}
                         alt="Photo preview"
-                        width={100}
-                        height={100}
+                        fill
                         className="rounded-md object-cover"
                       />
                     </div>
@@ -161,7 +174,12 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
                 <FormItem>
                   <FormLabel>Cost</FormLabel>
                   <FormControl>
-                    <Input type="number" placeholder="100" {...field} onChange={e => field.onChange(+e.target.value)} />
+                    <Input 
+                      type="number" 
+                      placeholder="100" 
+                      {...field} 
+                      onChange={e => field.onChange(+e.target.value)} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -180,18 +198,18 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                        {categories.map((category,index)=>(
-
-                      <SelectItem key={index} value={category}>{category}</SelectItem>
-                        ))}
-                
+                      {categories.map((category, index) => (
+                        <SelectItem key={index} value={category}>{category}</SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit">{isLoading?<Spinner />:"Submit"}</Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? <Spinner /> : "Submit"}
+            </Button>
           </form>
         </Form>
       </DialogContent>
