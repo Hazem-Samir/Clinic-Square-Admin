@@ -3,13 +3,13 @@ import BlurFade from '@/components/ui/blur-fade'
 import { DashboardCharts } from '@/components/new/dashboard-charts'
 import { getAllActorData, getAllActorStats, getAllOrdersStats, getAllPatientsData, getAllReservationsStats, getPatientStats } from '@/lib/api'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-const thisYear=new Date().getFullYear()
+import YearSelector from "@/components/year-selector"
 
 const monthNames = [
   "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
-async function PatientsStatData() {
+async function PatientsStatData({year}:{year:string}) {
   const [ {data:pendingActors},{data:allReservations},{data:stat}] = await Promise.all([
     getAllPatientsData(500000,1),
     getAllReservationsStats(50000,1,"doctor"),
@@ -18,14 +18,14 @@ async function PatientsStatData() {
   
 
 const Actors = monthNames.map((key, index) => {
-  const found = stat.data.find(st => st._id.month === `${index + 1}`&&st._id.year==thisYear );
+  const found = stat.data.find(st => Number(st._id.month) === index + 1 &&st._id.year==parseInt(year) );
   return {
       key,
       actors: found ? found.count : 0
   };
 });
 const Reservations = monthNames.map((key, index) => {
-  const found = allReservations.data.find(st => st._id.month === `${index + 1}`&&st._id.year==thisYear);
+  const found = allReservations.data.find(st =>  Number(st._id.month) === index + 1 &&st._id.year==parseInt(year));
   return {
       key,
       reservations: found ? found.count : 0
@@ -33,13 +33,13 @@ const Reservations = monthNames.map((key, index) => {
 });
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Patients',"All Reservations"]} descriptions={[`January - December ${new Date().getFullYear()}`,`January - December ${new Date().getFullYear()}`,["All Patients","Patients"]]} role='Patient'/>
+  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Patients',"All Reservations"]} descriptions={[`January - December ${parseInt(year)}`,`January - December ${parseInt(year)}`,["All Patients","Patients"]]} role='Patient'/>
 
   )
 }
 
 
-async function LabsStatData() {
+async function LabsStatData({year}:{year:string}) {
   const [ {data:pendingActors},{data:allReservations},{data:stat}] = await Promise.all([
     getAllActorData(500000,1,"lab","false"),
     getAllReservationsStats(50000,1,"lab"),
@@ -48,14 +48,14 @@ async function LabsStatData() {
   
 
 const Actors = monthNames.map((key, index) => {
-  const found = stat.data.find(st => st._id.month === `${index + 1}` && st._id.state === true&&st._id.year==thisYear);
+  const found = stat.data.find(st =>  Number(st._id.month) === index + 1  && st._id.state === true&&st._id.year==parseInt(year));
   return {
       key,
       actors: found ? found.count : 0
   };
 });
 const Reservations = monthNames.map((key, index) => {
-  const found = allReservations.data.find(st => st._id.month === `${index + 1}`&&st._id.year==thisYear);
+  const found = allReservations.data.find(st =>  Number(st._id.month) === index + 1 &&st._id.year==parseInt(year));
   return {
       key,
       reservations: found ? found.count : 0
@@ -63,12 +63,12 @@ const Reservations = monthNames.map((key, index) => {
 });
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Labs',"All Reservations"]} descriptions={[`January - December ${new Date().getFullYear()}`,`January - December ${new Date().getFullYear()}`,["The Pending Labs","Labs"]]} role='Lab'/>
+  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Labs',"All Reservations"]} descriptions={[`January - December ${parseInt(year)}`,`January - December ${parseInt(year)}`,["The Pending Labs","Labs"]]} role='Lab'/>
 
   )
 }
 
-async function DoctorsStatData() {
+async function DoctorsStatData({year}:{year:string}) {
   const [ {data:pendingActors},{data:allReservations},{data:stat}] = await Promise.all([
     getAllActorData(500000,1,"doctor","false"),
     getAllReservationsStats(50000,1,"doctor"),
@@ -77,28 +77,29 @@ async function DoctorsStatData() {
   
 
 const Actors = monthNames.map((key, index) => {
-  const found = stat.data.find(st =>Number(st._id.month) === index + 1&&st._id.year==thisYear && st._id.state === true);
+  const found = stat.data.find(st =>Number(st._id.month) === index + 1 &&st._id.year==parseInt(year) && st._id.state === true);
   return {
       key,
       actors: found ? found.count : 0
   };
 });
 const Reservations = monthNames.map((key, index) => {
-  const found = allReservations.data.find(st => st._id.month === `${index + 1}`&&st._id.year==thisYear);
+  const found = allReservations.data.find(st => Number(st._id.month) === index + 1 &&st._id.year==parseInt(year));
   return {
       key,
       reservations: found ? found.count : 0
   };
 });
+console.log(Reservations)
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Doctors',"All Reservations"]} descriptions={[`January - December ${new Date().getFullYear()}`,`January - December ${new Date().getFullYear()}`,["The Pending Doctors","Doctors"]]} role='Doctor'/>
+  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Doctors',"All Reservations"]} descriptions={[`January - December ${parseInt(year)}`,`January - December ${parseInt(year)}`,["The Pending Doctors","Doctors"]]} role='Doctor'/>
 
   )
 }
 
 
-async function PharmaciesStatData() {
+async function PharmaciesStatData({year}:{year:string}) {
   const [ {data:pendingActors},{data:allReservations},{data:stat}] = await Promise.all([
     getAllActorData(500000,1,"pharmacy","false"),
     getAllOrdersStats(50000,1),
@@ -107,14 +108,14 @@ async function PharmaciesStatData() {
   
 
 const Actors = monthNames.map((key, index) => {
-  const found = stat.data.find(st => st._id.month === `${index + 1}` && st._id.state === true&&st._id.year==thisYear);
+  const found = stat.data.find(st => Number(st._id.month) === index + 1 && st._id.state === true&&st._id.year==parseInt(year));
   return {
       key,
       actors: found ? found.count : 0
   };
 });
 const Reservations = monthNames.map((key, index) => {
-  const found = allReservations.data.find(st => st._id.month === `${index + 1}`&&st._id.year==thisYear);
+  const found = allReservations.data.find(st => Number(st._id.month) === index + 1 &&st._id.year==parseInt(year));
   return {
       key,
       reservations: found ? found.count : 0
@@ -122,14 +123,15 @@ const Reservations = monthNames.map((key, index) => {
 });
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Pharmacies',"All Orders"]} descriptions={[`January - December ${new Date().getFullYear()}`,`January - December ${new Date().getFullYear()}`,["The Pending Pharmacies","Pharmacies"]]} role='Pharmacie'/>
+  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Pharmacies',"All Orders"]} descriptions={[`January - December ${parseInt(year)}`,`January - December ${parseInt(year)}`,["The Pending Pharmacies","Pharmacies"]]} role='Pharmacie'/>
 
   )
 }
 
 
 
-export default function HomePage() {
+export default function HomePage({ searchParams }: { searchParams: { year?: string } }) {
+  const year = searchParams.year ||`${new Date().getFullYear()}`
  
   return (
     <ProtectedRoute allowedRoles={['admin']}>  
@@ -138,14 +140,15 @@ export default function HomePage() {
       <BlurFade delay={0} className='space-y-6' inView>
  
         <Tabs defaultValue="Patients" className="w-full">
-        <div className="flex flex-col sm:flex-row justify-center items-center  mb-6 sm:mb-4 p-4 sm:p-0">
+        <div className="flex flex-col sm:flex-row justify-center items-center space-x-4 mb-6 sm:mb-4 p-4 sm:p-0">
 
-            <TabsList className="grid  grid-cols-1 md:grid-cols-4 md:mb-5 mb-24 md:space-y-0 space-y-2 md:bg-muted bg-transparent mr-0">
+            <TabsList className="grid  grid-cols-1 md:grid-cols-4  md:space-y-0 space-y-2 md:bg-muted bg-transparent mr-0">
               <TabsTrigger value="Patients">Patients</TabsTrigger>
               <TabsTrigger value="Doctors">Doctors</TabsTrigger>
               <TabsTrigger value="Labs">Labs</TabsTrigger>
               <TabsTrigger value="Pharmacies">Pharmacies</TabsTrigger>
             </TabsList>
+            <YearSelector selectedYear={year} />
             </div>
             {/* <Input
               placeholder="Search doctors..."
@@ -154,16 +157,16 @@ export default function HomePage() {
               className="w-full sm:max-w-sm"
               /> */}
           <TabsContent value="Doctors" >
-           <DoctorsStatData />
+           <DoctorsStatData year={year} />
           </TabsContent>
           <TabsContent value="Patients">
-          <PatientsStatData />
+          <PatientsStatData year={year} />
           </TabsContent>
           <TabsContent value="Labs">
-           <LabsStatData />
+           <LabsStatData  year={year}/>
           </TabsContent>
           <TabsContent value="Pharmacies">
-          <PharmaciesStatData />
+          <PharmaciesStatData year={year} />
           </TabsContent>
         </Tabs>
  
