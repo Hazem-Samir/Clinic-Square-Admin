@@ -3,6 +3,7 @@ import BlurFade from '@/components/ui/blur-fade'
 import { DashboardCharts } from '@/components/new/dashboard-charts'
 import { getAllActorData, getAllActorStats, getAllOrdersStats, getAllPatientsData, getAllReservationsStats, getPatientStats } from '@/lib/api'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+const thisYear=new Date().getFullYear()
 
 const monthNames = [
   "January", "February", "March", "April", "May", "June",
@@ -17,14 +18,14 @@ async function PatientsStatData() {
   
 
 const Actors = monthNames.map((key, index) => {
-  const found = stat.data.find(st => st._id.month === `${index + 1}` );
+  const found = stat.data.find(st => st._id.month === `${index + 1}`&&st._id.year==thisYear );
   return {
       key,
       actors: found ? found.count : 0
   };
 });
 const Reservations = monthNames.map((key, index) => {
-  const found = allReservations.data.find(st => st._id.month === `${index + 1}`);
+  const found = allReservations.data.find(st => st._id.month === `${index + 1}`&&st._id.year==thisYear);
   return {
       key,
       reservations: found ? found.count : 0
@@ -32,7 +33,7 @@ const Reservations = monthNames.map((key, index) => {
 });
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Patients',"All Reservations"]} descriptions={['January - December 2024','January - December 2024',["All Patients","Patients"]]} role='Patient'/>
+  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Patients',"All Reservations"]} descriptions={[`January - December ${new Date().getFullYear()}`,`January - December ${new Date().getFullYear()}`,["All Patients","Patients"]]} role='Patient'/>
 
   )
 }
@@ -47,14 +48,14 @@ async function LabsStatData() {
   
 
 const Actors = monthNames.map((key, index) => {
-  const found = stat.data.find(st => st._id.month === `${index + 1}` && st._id.state === true);
+  const found = stat.data.find(st => st._id.month === `${index + 1}` && st._id.state === true&&st._id.year==thisYear);
   return {
       key,
       actors: found ? found.count : 0
   };
 });
 const Reservations = monthNames.map((key, index) => {
-  const found = allReservations.data.find(st => st._id.month === `${index + 1}`);
+  const found = allReservations.data.find(st => st._id.month === `${index + 1}`&&st._id.year==thisYear);
   return {
       key,
       reservations: found ? found.count : 0
@@ -62,7 +63,7 @@ const Reservations = monthNames.map((key, index) => {
 });
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Labs',"All Reservations"]} descriptions={['January - December 2024','January - December 2024',["The Pending Labs","Labs"]]} role='Lab'/>
+  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Labs',"All Reservations"]} descriptions={[`January - December ${new Date().getFullYear()}`,`January - December ${new Date().getFullYear()}`,["The Pending Labs","Labs"]]} role='Lab'/>
 
   )
 }
@@ -76,14 +77,14 @@ async function DoctorsStatData() {
   
 
 const Actors = monthNames.map((key, index) => {
-  const found = stat.data.find(st => st._id.month === `${index + 1}` && st._id.state === true);
+  const found = stat.data.find(st =>Number(st._id.month) === index + 1&&st._id.year==thisYear && st._id.state === true);
   return {
       key,
       actors: found ? found.count : 0
   };
 });
 const Reservations = monthNames.map((key, index) => {
-  const found = allReservations.data.find(st => st._id.month === `${index + 1}`);
+  const found = allReservations.data.find(st => st._id.month === `${index + 1}`&&st._id.year==thisYear);
   return {
       key,
       reservations: found ? found.count : 0
@@ -91,7 +92,7 @@ const Reservations = monthNames.map((key, index) => {
 });
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Doctors',"All Reservations"]} descriptions={['January - December 2024','January - December 2024',["The Pending Doctors","Doctors"]]} role='Doctor'/>
+  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Doctors',"All Reservations"]} descriptions={[`January - December ${new Date().getFullYear()}`,`January - December ${new Date().getFullYear()}`,["The Pending Doctors","Doctors"]]} role='Doctor'/>
 
   )
 }
@@ -106,14 +107,14 @@ async function PharmaciesStatData() {
   
 
 const Actors = monthNames.map((key, index) => {
-  const found = stat.data.find(st => st._id.month === `${index + 1}` && st._id.state === true);
+  const found = stat.data.find(st => st._id.month === `${index + 1}` && st._id.state === true&&st._id.year==thisYear);
   return {
       key,
       actors: found ? found.count : 0
   };
 });
 const Reservations = monthNames.map((key, index) => {
-  const found = allReservations.data.find(st => st._id.month === `${index + 1}`);
+  const found = allReservations.data.find(st => st._id.month === `${index + 1}`&&st._id.year==thisYear);
   return {
       key,
       reservations: found ? found.count : 0
@@ -121,7 +122,7 @@ const Reservations = monthNames.map((key, index) => {
 });
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Pharmacies',"All Orders"]} descriptions={['January - December 2024','January - December 2024',["The Pending Pharmacies","Pharmacies"]]} role='Pharmacie'/>
+  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Pharmacies',"All Orders"]} descriptions={[`January - December ${new Date().getFullYear()}`,`January - December ${new Date().getFullYear()}`,["The Pending Pharmacies","Pharmacies"]]} role='Pharmacie'/>
 
   )
 }

@@ -17,7 +17,10 @@ import Spinner from "../Spinner"
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
-  }),
+  }).regex(
+    /^[a-zA-Z\s]*$/,
+    "Name can only contain letters and spaces"
+  ),
 })
 
 export function AddTestModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {

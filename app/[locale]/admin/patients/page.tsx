@@ -5,7 +5,6 @@ import {  getAllPatientsData } from '@/lib/api'
 import { StatisticsCards } from '@/components/new/statistics-cards'
 import { ActorsTable } from '@/components/new/actors-table'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import SearchBar from '@/components/ui/SearchBar'
 
 
 async function PatientsStats() {
@@ -58,7 +57,6 @@ export default function Page({ searchParams }: { searchParams: { page?: string  
       <CardHeader>
           <div className="flex flex-col sm:flex-row justify-between items-center  mb-4 p-4 sm:p-0">
         <CardTitle>Patients</CardTitle>
-            <SearchBar />
         </div>
       </CardHeader>
       <CardContent className="p-0 sm:p-6">

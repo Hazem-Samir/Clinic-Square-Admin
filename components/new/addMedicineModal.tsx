@@ -30,7 +30,10 @@ const categories = [
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
-  }),
+  }).regex(
+    /^[a-zA-Z\s]*$/,
+    "Name can only contain letters and spaces"
+  ),
   photo: z.custom<File>(ImageHandler, {
     message: 'Invalid image file. Must be JPEG, PNG, or GIF and less than 5MB.',
   }),

@@ -59,7 +59,7 @@ const ActorData=({currentPage,totalPages,Actors,role,selectedActor,setSelecetdAc
       <TableBody>
         {Actors.map((actor) => (
           <TableRow key={actor.id}>
-            <TableCell className="font-medium">Dr. {actor.name}</TableCell>
+            <TableCell className="font-medium">{role.toLowerCase()==='doctor'?`Dr. ${actor.name}`:actor.name}</TableCell>
             <TableCell className="hidden sm:table-cell">{actor.email}</TableCell>
             <TableCell className="text-right">
               <Button variant="ghost" onClick={() => setSelecetdActor(actor)}>
@@ -199,7 +199,7 @@ export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
 
 {    isLoading ? (
       <div className="flex justify-center items-center p-8">
-        <Spinner />
+        <Spinner invert />
       </div>
     ) : (
       SearchResult === null ? (

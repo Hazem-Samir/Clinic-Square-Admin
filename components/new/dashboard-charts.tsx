@@ -41,7 +41,6 @@ export function DashboardCharts({chartsData,titles,descriptions,role}:IProps) {
    
  
   } satisfies ChartConfig
-  console.log(chartsData)
   return (
       <>
     <div className="grid gap-4  md:grid-cols-2 xl:grid-cols-3">

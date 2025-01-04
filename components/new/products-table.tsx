@@ -178,12 +178,12 @@ const router = useRouter();
     <div className="flex flex-col space-y-2">
   <div className="flex w-full justify-center sm:justify-end">
 
-<SearchBar onSearch={handleSearch} setResult={setSearchResult} searchTerm={searchTerm} setSearchTerm={setSearchTerm} title={`Search for ${type}`}/>
+<SearchBar onSearch={handleSearch} setResult={setSearchResult} searchTerm={searchTerm} setSearchTerm={setSearchTerm} title={`For_${type}`}/>
   </div>
 
 {    isLoading ? (
       <div className="flex justify-center items-center p-8">
-        <Spinner />
+        <Spinner invert />
       </div>
     ) : (
       SearchResult === null ? (
