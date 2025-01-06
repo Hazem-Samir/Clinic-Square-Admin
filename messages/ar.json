@@ -19,11 +19,149 @@
     "For_Doctor":"ابحص عن دكتور",
     "For_Question":"ابحث عن سؤال",
     "For_Lab":"ابحث عن معمل",
-    "For_Pharmacy":"ابحث عن صيدلية",
+    "For_Pharmacie":"ابحث عن صيدلية",
   "For_Test":"ابحث عن تحليل",
   "For_Medicine":"ابحث عن ادوية"
 
    
+  },
+  "Product_Modal": {
+    "Test_Details": "تفاصيل التحليل",
+    "Medicine_Details": "تفاصيل الدواء",
+    "Cost": "السعر",
+    "user_email": "ايميل الحساب",
+    "Photo": "الصورة",
+    "Product_Photo": "لا يوجد صورة المنتج",
+    "Accept":"موافقة",
+"Decline":"رفض",
+"Categories":{
+  "Cosmetics": "مستحضرات التجميل",
+  "Hair Care": "العناية بالشعر",
+  "Every Day Essentials": "مستلزمات يومية",
+  "Medical Equipment & Supplies": "المعدات والمستلزمات الطبية",
+  "Mom & Baby": "الأم والطفل",
+  "Sexual Health": "الصحة الجنسية",
+  "Medicine": "ادوية",
+  "Skin Care": "العناية بالبشرة"
+}
+  },
+  "Actor_Modal": {
+    "Doctor_Details": "تفاصيل الدكتور",
+    "Lab_Details": "تفاصيل المعمل",
+    "Pharamcy_Details": "تفاصيل الصيدلية",
+    "Patient_Details": "تفاصيل المريض",
+    "Address": "العنوان",
+    "Phone": "الهاتف",
+    "Age": "العمر",
+    "Gender": "الجنس",
+    "License": "الترخيص",
+    "Accept":"موافقة",
+"Decline":"رفض",
+"male":"ذكر",
+"female":"انثي",
+
+    "Specializations": {
+      "Allergist": "دكتور حساسية",
+      "Cardiologist": "دكتور قلب",
+      "Dermatologist": "دكتور جلدية",
+      "Endocrinologist": "دكتور الغدد الصماء",
+      "Gastroenterologist": "دكتور الجهاز الهضمي",
+      "Gynecologist": "دكتور النساء والتوليد",
+      "Hepatologist": "دكتور الكبد",
+      "Internal Medcine": "دكتور باطني",
+      "Neurologist": "دكتور أعصاب",
+      "Osteopathic": "دكتور عظام",
+      "Otolaryngologist": "دكتور الأنف والأذن والحنجرة",
+      "Pediatrician": "دكتور أطفال",
+      "Phlebologist": "دكتور الأوردة",
+      "Pulmonologist": "دكتور رئة",
+      "Rheumatologists": "دكتور روماتيزم",
+      "Tuberculosis": "دكتور سل"
+    }
+  },
+  "Medicine_Modal":{
+"title":"اضف دواء جديد",
+"Name":"الاسم",
+"Photo":"الصورة",
+"Cost":"السعر",
+"Category":"الفئة",
+"Medicine_Name":"اسم الدواء",
+"Select_Category":"اختار فئة",
+"submit":"اضافة",
+"Categories":{
+  "Cosmetics": "مستحضرات التجميل",
+  "Hair Care": "العناية بالشعر",
+  "Every Day Essentials": "مستلزمات يومية",
+  "Medical Equipment & Supplies": "المعدات والمستلزمات الطبية",
+  "Mom & Baby": "الأم والطفل",
+  "Sexual Health": "الصحة الجنسية",
+  "Medicine": "ادوية",
+  "Skin Care": "العناية بالبشرة"
+},
+"errors":{
+  "Name": "يجب أن يتكون الاسم من حرفين على الأقل.",
+  "Name_Regex": "يمكن أن يحتوي الاسم فقط على أحرف وأرقام ومسافات وأقواس",
+  "Photo": "ملف الصورة غير صالح. يجب أن يكون بتنسيق JPEG أو PNG أو GIF وأقل من 5 ميجابايت.",
+  "Cost": "يجب أن تكون التكلفة رقماً موجباً.",
+  "Category": "الرجاء اختيار فئة."
+}
+},
+"Test_Modal":{
+"title":"اضف تحليل جديد",
+"Name":"الاسم",
+"Test_Name":"اسم التحليل",
+"submit":"اضافة",
+"errors":{
+  "Name": "يجب أن يتكون الاسم من حرفين على الأقل.",
+  "Name_Regex": "يمكن أن يحتوي الاسم فقط على أحرف وأرقام ومسافات وأقواس"
+
+}
+},
+
+  "header":{
+    "Patients_Management":"ادارة المرضي",
+    "Doctors_Management":"ادارة الدكاترة",
+    "Labs_Management":"ادارة المعامل",
+    "Pharmacies_Management":"ادارة الصيدليات",
+        "Tests_Management":"ادارة التحاليل",
+      "Medicines_Management":"ادارة الادوية",
+      "Add_New_Medicine":"اضف دواء جديد",
+      "Add_New_Test":"اضف تحليل جديد"
+
+  },
+"actors":{
+  "Patients":"المرضي",
+  "Doctors":"الدكاترة",
+  "Labs":"المعامل",
+  "Pharmacies":"الصيدليات",
+  "Medicines":"الادوية",
+  "Tests":"التحاليل"
+  },
+  "table":{
+    "Name":"الاسم",
+    "Email":"الايميل",
+    "Actions":"الافعال",
+    "Category":"فئة",
+    "user_email":"ايميل الحساب",
+    "view":"اظهر",
+    "Approved":"الموافق عليه",
+    "Pending":"تحت الانتظار",
+    "No_Patients":"لا يوجد مرضي",
+    "No_Tests":"لا يوجد تحاليل",
+    "No_Medicines":"لا يوجد ادوية",
+    "No_Labs":"لا يوجد معامل",
+    "No_Doctors":"لا يوجد دكاترة",
+    "No_Pharmacies":"لا يوجد صيدليات",
+    "Categories":{
+  "Cosmetics": "مستحضرات التجميل",
+  "Hair Care": "العناية بالشعر",
+  "Every Day Essentials": "مستلزمات يومية",
+  "Medical Equipment & Supplies": "المعدات والمستلزمات الطبية",
+  "Mom & Baby": "الأم والطفل",
+  "Sexual Health": "الصحة الجنسية",
+  "Medicine": "ادوية",
+  "Skin Care": "العناية بالبشرة"
+}
   },
   "ModeToogle":{
   "title":"اختيار الثيم",
@@ -37,7 +175,7 @@
     "Logout":"تسجيل الخروج"
   },
       "doctor": {
-        "title": "لوحة تحكم الطبيب"
+        "title": "لوحة تحكم الدكتور"
       },
       "schedule": {
         "title": "تحديد جدولك",

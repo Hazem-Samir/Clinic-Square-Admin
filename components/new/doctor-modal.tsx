@@ -1,6 +1,6 @@
  "use client"
 import Image from "next/image"
-
+import { useTranslations } from 'next-intl'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { shortName } from "@/lib/utils"
@@ -25,11 +25,13 @@ interface IDoctor {
 }
 
 export function DoctorModal({ doctor, onClose, onAccept, onDecline,role }: { doctor: IDoctor, onClose: () => void, onAccept: () => void, onDecline: () => void,role:role }) {
+  const t = useTranslations('Actor_Modal')
+  
   return (
     <Dialog open={!!doctor} onOpenChange={onClose}>
       <DialogContent className={`sm:max-w-[425px] ${role!=="Patient"?"h-[80vh]":null} p-0 flex flex-col`}>
         <DialogHeader className="px-6 py-4 ">
-          <DialogTitle>Doctor Details</DialogTitle>
+          <DialogTitle>{t(`${role}_Details`)}</DialogTitle>
         </DialogHeader>
         <ScrollArea className="flex-grow px-6 py-4">
           <div className="grid gap-6">
@@ -40,38 +42,38 @@ export function DoctorModal({ doctor, onClose, onAccept, onDecline,role }: { doc
               </Avatar>
               <div>
                 <h3 className="font-bold">{doctor.name}</h3>
-                <p className="text-sm text-gray-500">{doctor.specialization}</p>
+                <p className="text-sm text-gray-500">{t(`Specializations.${doctor.specialization}`)}</p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-sm font-medium mb-2">Address</p>
+              <div className="col-span-2">
+                <p className="text-sm font-medium mb-2">{t(`Address`)}</p>
                 {doctor.address.map((address, index) => (
                   <p key={index} className="text-sm text-gray-500 mb-1">{address}</p>
                 ))}
               </div>
-              <div>
-                <p className="text-sm font-medium mb-2">Phone</p>
+              <div >
+                <p className="text-sm font-medium mb-2 ">{t(`Phone`)}</p>
                 {doctor.phoneNumbers.map((phone, index) => (
                   <p key={index} className="text-sm text-gray-500 mb-1">{phone}</p>
                 ))}
               </div>
               {doctor.gender?
               <div>
-                <p className="text-sm font-medium mb-1">Gender</p>
-                <p className="text-sm text-gray-500">{doctor.gender}</p>
+                <p className="text-sm font-medium mb-1">{t(`Gender`)}</p>
+                <p className="text-sm text-gray-500">{t(`${doctor.gender}`)}</p>
               </div>
               :null}
                {doctor.dateOfBirth?
               <div>
-                <p className="text-sm font-medium mb-1">Age</p>
+                <p className="text-sm font-medium mb-1">{t(`Age`)}</p>
                 <p className="text-sm text-gray-500">{getAge(doctor.dateOfBirth)}</p>
               </div>
 :null}
             </div>
             {doctor.license?
             <div>
-              <p className="text-sm font-medium mb-2">License</p>
+              <p className="text-sm font-medium mb-2">{t(`License`)}</p>
               <ScrollArea className="w-full whitespace-nowrap rounded-md border">
                 <div className="flex p-4">
                   {doctor.license.map((license, index) => (

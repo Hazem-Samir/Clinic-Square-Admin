@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import {  AcceptActor, DeclineActor, searchActors, searchPatients } from "@/lib/admin/clientApi"
 import Pagination from "../Pagination"
 import Spinner from "../Spinner"
+import { useTranslations } from 'next-intl'
 
 
 
@@ -27,7 +28,7 @@ interface IDoctor {
   license: string[]
   gender: string
 }
-type role= "Patient" | "Pharmacy" | "Lab" | "Doctor" 
+type role= "Patient" | "Pharmacie" | "Lab" | "Doctor" 
 interface IProps{
   Actors: IDoctor[]
   currentPage:number
@@ -44,16 +45,18 @@ interface IActorData extends IProps{
 
 }
 const ActorData=({currentPage,totalPages,Actors,role,selectedActor,setSelecetdActor,handlePageChange,handleAccept,handleDecline}:IActorData)=>{
+  const t = useTranslations('table')
+  
   return(
     <div className="overflow-x-auto">
-      {Actors.length<=0?<div className="flex justify-center items-center">{`No ${role}s`}</div>:(
+      {Actors.length<=0?<div className="flex justify-center items-center">{t(`No_${role}s`)}</div>:(
         <>
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[40%] ">Name</TableHead>
-          <TableHead className="hidden  sm:table-cell w-[40%]">Email</TableHead>
-          <TableHead className="text-right w-[20%]">Actions</TableHead>
+          <TableHead className="w-[40%] ">{t(`Name`)}</TableHead>
+          <TableHead className="hidden  sm:table-cell w-[40%]">{t(`Email`)}</TableHead>
+          <TableHead className="text-right w-[20%]">{t(`Actions`)}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -63,7 +66,7 @@ const ActorData=({currentPage,totalPages,Actors,role,selectedActor,setSelecetdAc
             <TableCell className="hidden sm:table-cell">{actor.email}</TableCell>
             <TableCell className="text-right">
               <Button variant="ghost" onClick={() => setSelecetdActor(actor)}>
-                View
+              {t(`view`)}
               </Button>
             </TableCell>
           </TableRow>

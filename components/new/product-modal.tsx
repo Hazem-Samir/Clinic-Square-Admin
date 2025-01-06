@@ -5,6 +5,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { shortName } from "@/lib/utils"
 import { ScrollArea, ScrollBar } from "../ui/scroll-area"
 import { Button } from "@/components/ui/button"
+import { useTranslations } from 'next-intl'
+
 interface IProduct {
   id:string
   name: string
@@ -17,11 +19,13 @@ interface IProduct {
 type type= "Medicine" | "Test" 
 
 export function ProductModal({ product, onClose, onAccept, onDecline,type }: { product: IProduct, onClose: () => void, onAccept: () => void, onDecline: () => void,type:type }) {
+    const t = useTranslations('Product_Modal')
+  
   return (
     <Dialog open={!!product} onOpenChange={onClose}>
       <DialogContent className={`sm:max-w-[425px] ${type==="Medicine" ? "h-[80vh]":null} p-0 flex flex-col`}>
         <DialogHeader className="px-6 py-4 ">
-          <DialogTitle>product Details</DialogTitle>
+          <DialogTitle>{t(`${type}_Details`)}</DialogTitle>
         </DialogHeader>
         <ScrollArea className="flex-grow px-6 py-4">
           <div className="grid gap-6">
@@ -32,7 +36,10 @@ export function ProductModal({ product, onClose, onAccept, onDecline,type }: { p
               </Avatar>
               <div>
                 <h3 className="font-bold">{product.name}</h3>
-                <p className="text-sm text-gray-500">{product.category}</p>
+              {product.category?
+                <p className="text-sm text-gray-500">{t(`Categories.${product.category}`)}</p>
+                :null
+              }
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -51,12 +58,12 @@ export function ProductModal({ product, onClose, onAccept, onDecline,type }: { p
               
               {product.cost?
               <div>
-                <p className="text-sm font-medium mb-1">Cost</p>
+                <p className="text-sm font-medium mb-1">{t(`Cost`)}</p>
                 <p className="text-sm text-gray-500">{product.cost}</p>
               </div>
               :null}
               <div>
-                <p className="text-sm font-medium mb-1">User Email</p>
+                <p className="text-sm font-medium mb-1">{t(`user_email`)}</p>
                 <p className="text-sm text-gray-500">{product.user}</p>
               </div>
               
@@ -64,7 +71,7 @@ export function ProductModal({ product, onClose, onAccept, onDecline,type }: { p
             </div>
             {product.photo?
             <div>
-              <p className="text-sm font-medium mb-2">Photo</p>
+              <p className="text-sm font-medium mb-2">{t(`Photo`)}</p>
               <ScrollArea className="w-full whitespace-nowrap rounded-md border">
                 <div className="flex p-4">
                  
@@ -72,7 +79,7 @@ export function ProductModal({ product, onClose, onAccept, onDecline,type }: { p
                       width={500}
                       height={500}
                       src={product.photo}
-                      alt={'Product Photo'}
+                      alt={t(`Product_Photo`)}
                       className="h-100 w-100 rounded object-contain mr-4 last:mr-0"
                       quality={100}
                     />
@@ -86,10 +93,10 @@ export function ProductModal({ product, onClose, onAccept, onDecline,type }: { p
               {!product.state?
               <>
                 <Button type="button"  variant="destructive" className="w-full sm:w-auto text-xs sm:text-sm" onClick={onDecline}>
-                  Decline
+                  {t(`Decline`)}
                 </Button>
                 <Button type="button" className="w-full sm:w-auto text-xs sm:text-sm " onClick={onAccept}>
-                  Accept
+                  {t(`Accept`)}
                 </Button>
                 </>
 :null}

@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ProductsTable } from '@/components/new/products-table'
 import { ProductsHeader } from '@/components/new/products-header'
+import { useTranslations } from 'next-intl'
 
 async function MedicinesStats() {
   
@@ -35,7 +36,6 @@ async function PendingMedicinesData({ page }: { page: number }) {
   
   const {data:medicines}=await getAllProductData(5,page,"medicines","false")
 
-  console.log("asds",medicines.data)
   return (
     
     <ProductsTable
@@ -72,25 +72,27 @@ export default function Page({ searchParams }: { searchParams: { Apage?: string,
   const Apage = Number(searchParams.Apage) || 1;
   const Ppage = Number(searchParams.Ppage) || 1;
 
-  
+      const t = useTranslations('actors')
+      const tTable = useTranslations('table')
   return (
     <ProtectedRoute allowedRoles={['admin']}>
 
 
       <main className="flex flex-1 flex-col gap-2 p-5 sm:gap-4 sm:p-4 md:gap-8 md:p-8 ">
       <BlurFade delay={0} className='space-y-6' inView>
-      <ProductsHeader type='Medicne'/>
+      <ProductsHeader type='Medicine'/>
       <MedicinesStats />
       <Card>
       <CardHeader>
-        <CardTitle>Medicines</CardTitle>
+      <CardTitle>{t(`Medicines`)}</CardTitle>
+
       </CardHeader>
       <CardContent className="p-0 sm:p-6">
         <Tabs defaultValue="approved" className="w-full">
           <div className="flex flex-col sm:flex-row justify-between items-center  mb-4 p-4 sm:p-0">
             <TabsList className="mb-4 sm:mb-0">
-              <TabsTrigger value="approved">Approved</TabsTrigger>
-              <TabsTrigger value="pending">Pending</TabsTrigger>
+            <TabsTrigger value="approved">{tTable(`Approved`)}</TabsTrigger>
+            <TabsTrigger value="pending">{tTable(`Pending`)}</TabsTrigger>
             </TabsList>
             {/* <Input
               placeholder="Search doctors..."

@@ -12,20 +12,22 @@ import {  AddTest } from "@/lib/admin/clientApi"
 import { useRouter } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast';
 import Spinner from "../Spinner"
+import { useTranslations } from 'next-intl'
 
 
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
+    message: "Name",
   }).regex(
     /^[a-zA-Z0-9()\s]*$/,
-    "Name can only contain letters, numbers, spaces, and parentheses"
+    "Name_Regex"
   ),
 })
 
 export function AddTestModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false);
+  const t = useTranslations('Test_Modal')
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,7 +44,7 @@ export function AddTestModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
       toast.success(res.message,{
         duration: 2000,
         position: 'bottom-center',
-      });
+      });شيي
       form.reset({   name: ""})
       onClose()
       router.refresh();
@@ -63,7 +65,7 @@ export function AddTestModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add New Test</DialogTitle>
+          <DialogTitle>{t(`title`)}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -72,16 +74,16 @@ export function AddTestModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{t(`Name`)}</FormLabel>
                   <FormControl>
-                    <Input placeholder="Dr. John Doe" {...field} />
+                    <Input placeholder={t(`Test_Name`)} {...field} />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage translate={'Test_Modal.errors'} />
                 </FormItem>
               )}
             />
            
-           <Button type="submit">{isLoading?<Spinner />:"Submit"}</Button>
+           <Button type="submit">{isLoading?<Spinner />:t(`submit`)}</Button>
           </form>
         </Form>
       </DialogContent>

@@ -6,6 +6,7 @@ import { StatisticsCards } from '@/components/new/statistics-cards'
 import { ActorsTable } from '@/components/new/actors-table'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useTranslations } from 'next-intl'
 
 async function PharmaciesStats() {
   
@@ -43,7 +44,7 @@ async function PendingPharmaciesData({ page }: { page: number }) {
    currentPage={page}
    totalPages={pharmacies.paginationResult.numberOfPages}
    Actors={pharmacies.data}
-   role='Pharmacy'
+   role='Pharmacie'
    state='false'
    />
   )
@@ -61,7 +62,7 @@ async function AcceptedPharmaciesData({ page }: { page: number }) {
    currentPage={page}
    totalPages={pharmacies.paginationResult.numberOfPages}
    Actors={pharmacies.data}
-   role='Pharmacy'
+   role='Pharmacie'
    state='true'
 
    />
@@ -71,6 +72,8 @@ async function AcceptedPharmaciesData({ page }: { page: number }) {
 export default function Page({ searchParams }: { searchParams: { Apage?: string,Ppage?: string  } }) {
   const Apage = Number(searchParams.Apage) || 1;
   const Ppage = Number(searchParams.Ppage) || 1;
+  const t = useTranslations('actors')
+  const tTable = useTranslations('table')
 
   
   return (
@@ -83,14 +86,14 @@ export default function Page({ searchParams }: { searchParams: { Apage?: string,
       <PharmaciesStats />
       <Card>
       <CardHeader>
-        <CardTitle>Pharmacies</CardTitle>
+        <CardTitle>{t(`Pharmacies`)}</CardTitle>
       </CardHeader>
       <CardContent className="p-0 sm:p-6">
         <Tabs defaultValue="approved" className="w-full">
           <div className="flex flex-col sm:flex-row justify-between items-center  mb-4 p-4 sm:p-0">
             <TabsList className="mb-4 sm:mb-0">
-              <TabsTrigger value="approved">Approved</TabsTrigger>
-              <TabsTrigger value="pending">Pending</TabsTrigger>
+              <TabsTrigger value="approved">{tTable(`Approved`)}</TabsTrigger>
+              <TabsTrigger value="pending">{tTable(`Pending`)}</TabsTrigger>
             </TabsList>
             {/* <Input
               placeholder="Search doctors..."

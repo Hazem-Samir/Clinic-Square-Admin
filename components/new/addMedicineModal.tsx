@@ -15,6 +15,7 @@ import { AddMedicine } from "@/lib/admin/clientApi"
 import { useRouter } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast'
 import Spinner from "../Spinner"
+import { useTranslations } from 'next-intl'
 
 const categories = [
   "Cosmetics",
@@ -29,20 +30,20 @@ const categories = [
 
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
+    message: "Name",
   }).regex(
     /^[a-zA-Z0-9()\s]*$/,
-    "Name can only contain letters, numbers, spaces, and parentheses"
+    "Name_Regex"
   ),
 
   photo: z.custom<File>(ImageHandler, {
-    message: 'Invalid image file. Must be JPEG, PNG, or GIF and less than 5MB.',
+    message: 'Photo',
   }),
   cost: z.number().min(1, {
-    message: "Cost must be a positive number.",
+    message: "Cost",
   }),
   category: z.string().min(1, {
-    message: "Please select a category.",
+    message: "Category",
   }),
 })
 
@@ -50,6 +51,7 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
   const [photoPreview, setPhotoPreview] = useState<string | null>(null)
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
+  const t = useTranslations('Medicine_Modal')
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -121,7 +123,7 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add New Medicine</DialogTitle>
+          <DialogTitle>{t(`title`)}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -130,11 +132,11 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{t(`Name`)}</FormLabel>
                   <FormControl>
-                    <Input placeholder="Medicine name" {...field} />
+                    <Input placeholder={t(`Medicine_Name`)} {...field} />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage translate={'Medicine_Modal.errors'} />
                 </FormItem>
               )}
             />
@@ -143,7 +145,7 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
               name="photo"
               render={({ field: { onChange, value, ...field } }) => (
                 <FormItem>
-                  <FormLabel>Photo</FormLabel>
+                  <FormLabel>{t(`Photo`)}</FormLabel>
                   <FormControl>
                     <div className="flex items-center space-x-4">
                       <Input
@@ -167,7 +169,7 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
                       />
                     </div>
                   )}
-                  <FormMessage />
+               <FormMessage translate={'Medicine_Modal.errors'} />
                 </FormItem>
               )}
             />
@@ -176,7 +178,7 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
               name="cost"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Cost</FormLabel>
+                  <FormLabel>{t(`Cost`)}</FormLabel>
                   <FormControl>
                     <Input 
                       type="number" 
@@ -185,7 +187,7 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
                       onChange={e => field.onChange(+e.target.value)} 
                     />
                   </FormControl>
-                  <FormMessage />
+               <FormMessage translate={'Medicine_Modal.errors'} />
                 </FormItem>
               )}
             />
@@ -194,25 +196,25 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
               name="category"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Category</FormLabel>
+                  <FormLabel>{t(`Category`)}</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a category" />
+                        <SelectValue  placeholder={t(`Select_Category`)} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       {categories.map((category, index) => (
-                        <SelectItem key={index} value={category}>{category}</SelectItem>
+                        <SelectItem key={index} value={category}>{t(`Categories.${category}`)}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                  <FormMessage />
+               <FormMessage translate={'Medicine_Modal.errors'} />
                 </FormItem>
               )}
             />
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? <Spinner /> : "Submit"}
+              {isLoading ? <Spinner /> : t(`submit`)}
             </Button>
           </form>
         </Form>

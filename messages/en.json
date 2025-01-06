@@ -17,10 +17,148 @@
       "For_Doctor":"Search For Doctor",
       "For_Question":"Search For Question",
       "For_Lab":"Search For Lab",
-      "For_Pharmacy":"Search For Pharmacy",
+      "For_Pharmacie":"Search For Pharmacy",
       "For_Test":"Search For Test",
       "For_Medicine":"Search For Medicine"
       
+    },
+    "Product_Modal": {
+      "Test_Details": "Test Details",
+      "Medicine_Details": "Medicine Details",
+      "Cost": "Cost",
+      "user_email": "User Email",
+      "Photo": "Photo",
+      "Product_Photo": "No Product Photo",
+      "Accept":"Accept",
+  "Decline":"Decline",
+ "Categories":{
+  "Cosmetics":"Cosmetics",
+  "Hair Care":"Hair Care",
+  "Every Day Essentials":"Every Day Essentials",
+  "Medical Equipment & Supplies":"Medical Equipment & Supplies",
+  "Mom & Baby":"Mom & Baby",
+  "Sexual Health":"Sexual Health",
+  "Medicine":"Medicine",
+  "Skin Care":"Skin Care"
+}
+    },
+"Actor_Modal":{
+"Doctor_Details":"Doctor Details",
+"Lab_Details":"Lab Details",
+"Pharamcy_Details":"Pharamcy Details",
+"Patient_Details":"Patient Details",
+"Address":"Address",
+"Phone":"Phone",
+"Age":"Age",
+"Gender":"Gender",
+"License":"License",
+"Accept":"Accept",
+"Decline":"Decline",
+"male":"Male",
+"female":"Female",
+"Specializations":{
+  "Allergist":"Allergist",
+"Cardiologist":"Cardiologist",
+"Dermatologist":"Dermatologist",
+"Endocrinologist":"Endocrinologist",
+"Gastroenterologist":"Gastroenterologist",
+"Gynecologist":"Gynecologist",
+"Hepatologist":"Hepatologist",
+"Internal Medcine":"Internal Medcine",
+"Neurologist":"Neurologist",
+"Osteopathic":"Osteopathic",
+"Otolaryngologist":"Otolaryngologist",
+"Pediatrician":"Pediatrician",
+"Phlebologist":"Phlebologist",
+"Pulmonologist":"Pulmonologist",
+"Rheumatologists":"Rheumatologists",
+"Tuberculosis":"Tuberculosis"
+}
+},
+
+
+"Medicine_Modal":{
+"title":"Add New Medicine",
+"Name":"Name",
+"Photo":"Photo",
+"Cost":"Cost",
+"Category":"Category",
+"Medicine_Name":"Medicine Name",
+"Select_Category":"Select Category",
+"submit":"Submit",
+"Categories":{
+  "Cosmetics":"Cosmetics",
+  "Hair Care":"Hair Care",
+  "Every Day Essentials":"Every Day Essentials",
+  "Medical Equipment & Supplies":"Medical Equipment & Supplies",
+  "Mom & Baby":"Mom & Baby",
+  "Sexual Health":"Sexual Health",
+  "Medicine":"Medicine",
+  "Skin Care":"Skin Care"
+},
+"errors":{
+  "Name":"Name must be at least 2 characters.",
+  "Name_Regex":"Name can only contain letters, numbers, spaces, and parentheses",
+  "Photo":"Invalid image file. Must be JPEG, PNG, or GIF and less than 5MB.",
+  "Cost":"Cost must be a positive number.",
+  "Category":"Please select a category."
+}
+},
+"Test_Modal":{
+"title":"Add New Test",
+"Name":"Name",
+"Test_Name":"Test Name",
+"submit":"Submit",
+
+"errors":{
+  "Name":"Name must be at least 2 characters.",
+  "Name_Regex":"Name can only contain letters, numbers, spaces, and parentheses"
+}
+},
+
+    "header":{
+      "Patients_Management":"Patients Management",
+      "Doctors_Management":"Doctors Management",
+      "Labs_Management":"Lab Management",
+      "Pharmacies_Management":"Pharmacies Management",
+      "Tests_Management":"Tests Management",
+      "Medicines_Management":"Medicines Management",
+      "Add_New_Medicine":"Add New Medicine",
+      "Add_New_Test":"Add New Test"
+    },
+  "actors":{
+    "Patients":"Patients",
+    "Doctors":"Doctors",
+    "Labs":"Labs",
+    "Pharmacies":"Pharmacies",
+    "Medicines":"Medicines",
+    "Tests":"Tests"
+    },
+    "table":{
+      "Name":"Name",
+      "Email":"Email",
+      "Actions":"Actions",
+      "Category":"Category",
+      "user_email":"User Email",
+      "view":"View",
+      "Approved":"Approved",
+      "Pending":"Pending",
+      "No_Patients":"No Patients",
+      "No_Tests":"No Tests",
+      "No_Medicines":"No Medicines",
+      "No_Labs":"No Labs",
+      "No_Doctors":"No Doctors",
+      "No_Pharmacies":"No Pharmacies",
+      "Categories":{
+  "Cosmetics":"Cosmetics",
+  "Hair Care":"Hair Care",
+  "Every Day Essentials":"Every Day Essentials",
+  "Medical Equipment & Supplies":"Medical Equipment & Supplies",
+  "Mom & Baby":"Mom & Baby",
+  "Sexual Health":"Sexual Health",
+  "Medicine":"Medicine",
+  "Skin Care":"Skin Care"
+}
     },
   "ModeToogle":{
     "title":"Toggle theme",

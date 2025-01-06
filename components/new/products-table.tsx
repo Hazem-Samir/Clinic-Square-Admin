@@ -10,6 +10,7 @@ import {  AcceptProduct, DeclineProduct, SearchProducts } from "@/lib/admin/clie
 import Pagination from "../Pagination"
 import { ProductModal } from "./product-modal"
 import Spinner from "../Spinner"
+import { useTranslations } from 'next-intl'
 
 type type= "Medicine" | "Test" 
 
@@ -40,26 +41,28 @@ interface IProductData extends IProps{
 
 }
 const ProductsData=({Products,selectedProduct,setSelectedProuct,handlePageChange,handleAccept,handleDecline,currentPage,totalPages,type}:IProductData)=>{
+  const t = useTranslations('table')
+  
   return (
     <div className="overflow-x-auto">
-      {Products.length<=0?<div className="flex justify-center items-center">{`No ${type}s`}</div>:(
+      {Products.length<=0?<div className="flex justify-center items-center">{t(`No_${type}s`)}</div>:(
         <>
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[40%]">Name</TableHead>
-          <TableHead className="hidden sm:table-cell w-[40%]">{type==="Medicine"? "Category":"User Email"}</TableHead>
-          <TableHead className="text-right w-[20%]">Actions</TableHead>
+          <TableHead className="w-[40%]">{t(`Name`)}</TableHead>
+          <TableHead className="hidden sm:table-cell w-[40%]">{type==="Medicine"? t(`Category`):t(`user_email`)}</TableHead>
+          <TableHead className="text-right w-[20%]">{t(`Actions`)}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {Products.map((product) => (
           <TableRow key={product.id}>
             <TableCell className="font-medium">{product.name}</TableCell>
-            <TableCell className="hidden sm:table-cell">{type==="Medicine"?product.category:product.user}</TableCell>
+            <TableCell className="hidden sm:table-cell">{type==="Medicine"?t(`Categories.${product.category}`):product.user}</TableCell>
             <TableCell className="text-right">
               <Button variant="ghost" onClick={() => setSelectedProuct(product)}>
-                View
+                {t(`view`)}
               </Button>
             </TableCell>
           </TableRow>

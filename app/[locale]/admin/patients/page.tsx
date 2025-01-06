@@ -6,6 +6,7 @@ import { StatisticsCards } from '@/components/new/statistics-cards'
 import { ActorsTable } from '@/components/new/actors-table'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs } from "@/components/ui/tabs"
+import { useTranslations } from 'next-intl'
 
 
 async function PatientsStats() {
@@ -44,7 +45,7 @@ async function PatientsData({ page }: { page: number }) {
 
 export default function Page({ searchParams }: { searchParams: { page?: string  } }) {
   const page = Number(searchParams.page) || 1;
-
+  const t = useTranslations('actors')
   
   return (
     <ProtectedRoute allowedRoles={['admin']}>
@@ -53,9 +54,10 @@ export default function Page({ searchParams }: { searchParams: { page?: string  
 <main className="flex flex-1 flex-col gap-2 p-5 sm:gap-4 sm:p-4 md:gap-8 md:p-8 ">
 <BlurFade delay={0} className='space-y-6' inView>
 <ActorsHeader role='Patient'/>
+<PatientsStats />
 <Card>
 <CardHeader>
-  <CardTitle>Patients</CardTitle>
+<CardTitle>{t(`Patients`)}</CardTitle>
 </CardHeader>
 <CardContent className="p-0 sm:p-6">
   <Tabs  className="w-full">
