@@ -142,10 +142,10 @@ export default function HomePage({ searchParams }: { searchParams: { year?: stri
         <div className="flex flex-col sm:flex-row justify-center items-center space-x-4 mb-6 sm:mb-4 p-4 sm:p-0">
 
             <TabsList className="grid  grid-cols-1 md:grid-cols-4 mb-20 md:mb-4 md:space-y-0 space-y-2 md:bg-muted bg-transparent mr-0">
-              <TabsTrigger value="Patients">Patients</TabsTrigger>
-              <TabsTrigger value="Doctors">Doctors</TabsTrigger>
-              <TabsTrigger value="Labs">Labs</TabsTrigger>
-              <TabsTrigger value="Pharmacies">Pharmacies</TabsTrigger>
+              <TabsTrigger className="ata-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Patients">Patients</TabsTrigger>
+              <TabsTrigger className="ata-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Doctors">Doctors</TabsTrigger>
+              <TabsTrigger className="ata-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Labs">Labs</TabsTrigger>
+              <TabsTrigger className="ata-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Pharmacies">Pharmacies</TabsTrigger>
             </TabsList>
             </div>
             <div className="flex justify-end">

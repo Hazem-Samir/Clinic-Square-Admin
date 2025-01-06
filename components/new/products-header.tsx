@@ -12,9 +12,9 @@ export function ProductsHeader({type}:{type:type}) {
   
   return (
     
-    <div className="flex items-center justify-between p-2">
+    <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 items-center justify-between p-2">
 
-    <h1 className="text-3xl font-bold">{`${type}s Management`}</h1>
+    <h1 className="text-3xl font-bold text-center">{`${type}s Management`}</h1>
    
     <Button className="w-full sm:w-auto" onClick={() => setIsAddModalOpen(true)}>
     Add New {type}

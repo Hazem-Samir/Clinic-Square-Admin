@@ -13,7 +13,8 @@ import {
 import { useSelectedLayoutSegment } from 'next/navigation'
 import Link from "next/link"
 import { useEffect, useState } from 'react'
-
+import Image from 'next/image'
+import Logo from "@/public/Logo.png"
 import { useLocale, useTranslations } from 'next-intl'
 
 interface NavItem {
@@ -69,16 +70,20 @@ const MobileNav = ({navItems,role}:IProps) => {
       </SheetTrigger>
       <SheetContent side={dir === 'rtl' ? 'right' : 'left'} className="w-[80vw] sm:w-[300px] flex flex-col p-8">
         <nav className="grid gap-1 sm:gap-2 text-sm sm:text-base font-medium space-y-2">
-          <Link
-            href="#"
-            className="flex items-center gap-2 text-base sm:text-lg font-semibold"
-          >
-            <Hospital className="h-5 w-5 sm:h-6 sm:w-6" />
-            <span className="">Clinic Square</span>
-          </Link>
+        <div>
+      <Link  href={`/${locale}/${role}`}  className="flex items-center ">
+        <Image
+          src={Logo}
+          alt="Clinic Square Logo"
+          width={150}
+          height={40}
+          className="h-11 w-auto"
+        />
+      </Link>
+    </div>
 
           {navItems.map((item) => {
-            const isActive = segment === item.href.split('/')[2] || (segment === null && item.href===`/${role}` )
+            const isActive = segment === item.href.split('/')[1] || (segment === null && item.href===`${role}` )
             const Icon = iconMap[item.icon as keyof typeof iconMap];
             return (
               <Link
@@ -86,7 +91,7 @@ const MobileNav = ({navItems,role}:IProps) => {
                 href={`/${locale}/${item.href}`}
                 className={`flex items-center gap-3 rounded-lg px-2 sm:px-3 py-1 sm:py-2 transition-all
                   ${isActive 
-                    ? 'bg-primary text-primary-foreground shadow-[0_0_10px_rgba(var(--primary),0.5)]' 
+                    ? 'bg-teal-400 text-primary-foreground shadow-[0_0_10px_rgba(var(--primary),0.5)]' 
                     : 'text-muted-foreground hover:text-primary hover:bg-muted'
                   }`}
               >

@@ -6,13 +6,13 @@ import { setRequestLocale } from 'next-intl/server'
 
 
 const navItems = [
-  { href: `/admin`, icon: 'Home', label: "Home" },
-  { href: `/admin/patients`, icon: 'User', label: "Patients" },
-  { href: `/admin/doctors`, icon: 'UserCog', label: "Doctors" },
-  { href: `/admin/labs`, icon: 'FlaskConical', label: "Labs" },
-  { href: `/admin/pharmacies`, icon: 'Pill', label: "Pharmacies" },
-  { href: `/admin/medicines`, icon: 'Tablets', label: "Medicines" },
-  { href: `/admin/tests`, icon: 'TestTubeDiagonal', label: "Tests" },
+  { href: `admin`, icon: 'Home', label: "Home" },
+  { href: `admin/patients`, icon: 'User', label: "Patients" },
+  { href: `admin/doctors`, icon: 'UserCog', label: "Doctors" },
+  { href: `admin/labs`, icon: 'FlaskConical', label: "Labs" },
+  { href: `admin/pharmacies`, icon: 'Pill', label: "Pharmacies" },
+  { href: `admin/medicines`, icon: 'Tablets', label: "Medicines" },
+  { href: `admin/tests`, icon: 'TestTubeDiagonal', label: "Tests" },
 ]
 
 export function generateStaticParams() {
