@@ -10,9 +10,9 @@ import { ProductsHeader } from '@/components/new/products-header'
 async function TestsStats() {
   
   const [ {data:AcceptedTests},{data:tests}] = await Promise.all([
-    // getAllProductData(500000,1,"tests","true"),
+    getAllProductData(500000,1,"tests","true"),
     getAllProductData(500000,1,"tests","false"),
-    getAllReservations(50000,1,"lab")
+    // getAllReservations(50000,1,"lab")
   ])
   return (
     

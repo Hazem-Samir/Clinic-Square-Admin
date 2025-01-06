@@ -126,13 +126,28 @@ const router = useRouter();
   // )
 
   const handlePageChange=(newPage:number)=>{
+    console.log(type)
     if(type==="Medicine"){
+      if(state==="true"){
 
-      router.push(`medicines?page=${newPage}`);
+        router.push(`medicines?Apage=${newPage}`);
+      }
+      else if(state==="false"){
+
+        router.push(`medicines?Ppage=${newPage}`);
+      }
+
     }
     else   if(type==="Test"){
+      if(state==="true"){
 
-      router.push(`tests?page=${newPage}`);
+        router.push(`tests?Apage=${newPage}`);
+      }
+      else if(state==="false"){
+
+        router.push(`tests?Ppage=${newPage}`);
+      }
+
     }
   }
 
