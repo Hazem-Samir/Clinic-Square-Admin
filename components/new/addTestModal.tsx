@@ -17,9 +17,9 @@ import Spinner from "../Spinner"
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
-  }).regex(
-    /^[a-zA-Z0-9\s]*$/,
-    "Name can only contain letters, numbers, and spaces"
+  })    .regex(
+    /^[a-zA-Z0-9()\s]*$/,
+    "Name can only contain letters, numbers, spaces, and parentheses"
   ),
 })
 
