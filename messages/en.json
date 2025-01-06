@@ -30,6 +30,7 @@
       "Photo": "Photo",
       "Product_Photo": "No Product Photo",
       "Accept":"Accept",
+      "Delete":"Delete",
   "Decline":"Decline",
  "Categories":{
   "Cosmetics":"Cosmetics",
@@ -79,8 +80,10 @@
 
 "Medicine_Modal":{
 "title":"Add New Medicine",
+"edit_title":"Edit Medicine",
 "Name":"Name",
 "Photo":"Photo",
+"edit_submit":"Edit",
 "Cost":"Cost",
 "Category":"Category",
 "Medicine_Name":"Medicine Name",
@@ -106,6 +109,8 @@
 },
 "Test_Modal":{
 "title":"Add New Test",
+"edit_title":"Edit Test",
+"edit_submit":"Edit",
 "Name":"Name",
 "Test_Name":"Test Name",
 "submit":"Submit",
@@ -141,6 +146,7 @@
       "Category":"Category",
       "user_email":"User Email",
       "view":"View",
+      "edit":"Edit",
       "Approved":"Approved",
       "Pending":"Pending",
       "No_Patients":"No Patients",

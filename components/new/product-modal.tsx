@@ -6,6 +6,7 @@ import { shortName } from "@/lib/utils"
 import { ScrollArea, ScrollBar } from "../ui/scroll-area"
 import { Button } from "@/components/ui/button"
 import { useTranslations } from 'next-intl'
+import Spinner from "../Spinner"
 
 interface IProduct {
   id:string
@@ -18,7 +19,7 @@ interface IProduct {
 }
 type type= "Medicine" | "Test" 
 
-export function ProductModal({ product, onClose, onAccept, onDecline,type }: { product: IProduct, onClose: () => void, onAccept: () => void, onDecline: () => void,type:type }) {
+export function ProductModal({ product, onClose, onDelete,onAccept, onDecline,type ,isAccepting,isDeleting}: { isAccepting:boolean ,isDeleting:boolean, product: IProduct, onClose: () => void, onAccept: () => void, onDelete: () => void, onDecline: () => void,type:type }) {
     const t = useTranslations('Product_Modal')
   
   return (
@@ -76,7 +77,7 @@ export function ProductModal({ product, onClose, onAccept, onDecline,type }: { p
                 <div className="flex p-4">
                  
                     <Image
-                      width={500}
+                      width={400}
                       height={500}
                       src={product.photo}
                       alt={t(`Product_Photo`)}
@@ -92,14 +93,16 @@ export function ProductModal({ product, onClose, onAccept, onDecline,type }: { p
             <DialogFooter className="flex flex-col sm:flex-row gap-2 items-center mb-2 justify-center">
               {!product.state?
               <>
-                <Button type="button"  variant="destructive" className="w-full sm:w-auto text-xs sm:text-sm" onClick={onDecline}>
-                  {t(`Decline`)}
+                <Button type="button"  variant="destructive" className="w-full sm:w-auto text-xs sm:text-sm" disabled={isAccepting||isDeleting} onClick={onDecline}>
+                  {isDeleting?<Spinner/>:t(`Decline`)}
                 </Button>
-                <Button type="button" className="w-full sm:w-auto text-xs sm:text-sm " onClick={onAccept}>
-                  {t(`Accept`)}
+                <Button type="button"  disabled={isAccepting||isDeleting}  className="w-full sm:w-auto text-xs sm:text-sm " onClick={onAccept}>
+                  {isAccepting?<Spinner/>:t(`Accept`)}
                 </Button>
                 </>
-:null}
+:<Button type="button"  disabled={isAccepting||isDeleting}   variant="destructive" className="w-full sm:w-auto text-xs sm:text-sm " onClick={onDelete}>
+{isDeleting?<Spinner/>:t(`Delete`)}
+</Button>}
               </DialogFooter>
           </div>
         

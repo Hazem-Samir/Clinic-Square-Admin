@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {  AddTest } from "@/lib/admin/clientApi"
+import {   UpdateTest } from "@/lib/admin/clientApi"
 import { useRouter } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast';
 import Spinner from "../Spinner"
@@ -24,28 +24,28 @@ const formSchema = z.object({
   ),
 })
 
-export function AddTestModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export function EditTestModal({ isOpen, onClose ,test}: {test:{name:string,id:string}, isOpen: boolean; onClose: () => void }) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false);
   const t = useTranslations('Test_Modal')
-
+console.log(test)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
+      name: test.name,
     },
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
     setIsLoading(true);
-    const res= await AddTest(values);
+    const res= await UpdateTest(values,test.id);
     if(res.success){  
       toast.success(res.message,{
         duration: 2000,
         position: 'bottom-center',
       });
-      form.reset({   name: ""})
+      form.reset({  ...values})
       onClose()
       router.refresh();
     }
@@ -65,7 +65,7 @@ export function AddTestModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{t(`title`)}</DialogTitle>
+          <DialogTitle>{t(`edit_title`)}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -83,7 +83,7 @@ export function AddTestModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
               )}
             />
            
-           <Button disabled={isLoading} type="submit">{isLoading?<Spinner />:t(`submit`)}</Button>
+           <Button type="submit" disabled={isLoading}>{isLoading?<Spinner />:t(`edit_submit`)}</Button>
           </form>
         </Form>
       </DialogContent>

@@ -11,6 +11,8 @@ import Pagination from "../Pagination"
 import { ProductModal } from "./product-modal"
 import Spinner from "../Spinner"
 import { useTranslations } from 'next-intl'
+import { EditTestModal } from "./EditTestModal"
+import { EditMedicineModal } from "./EditMedicineModal"
 
 type type= "Medicine" | "Test" 
 
@@ -38,11 +40,16 @@ interface IProductData extends IProps{
   handlePageChange:(newPage:number)=>void
   handleAccept:()=>void
   handleDecline:()=>void
+  handleDelete:()=>void
+  isAccepting:boolean
+  isDeleting:boolean
 
 }
-const ProductsData=({Products,selectedProduct,setSelectedProuct,handlePageChange,handleAccept,handleDecline,currentPage,totalPages,type}:IProductData)=>{
+const ProductsData=({Products,selectedProduct,isAccepting,isDeleting,handleDelete,setSelectedProuct,handlePageChange,handleAccept,handleDecline,currentPage,totalPages,type}:IProductData)=>{
   const t = useTranslations('table')
-  
+  const [selectedEditMedicine, setSelectedEditMedicine] = useState<IProduct|null>(null)
+  const [selectedEditTest, setSelectedEditTest] = useState<IProduct|null>(null)
+  const [isOpen,setIsopen]=useState(false)
   return (
     <div className="overflow-x-auto">
       {Products.length<=0?<div className="flex justify-center items-center">{t(`No_${type}s`)}</div>:(
@@ -64,14 +71,24 @@ const ProductsData=({Products,selectedProduct,setSelectedProuct,handlePageChange
               <Button variant="ghost" onClick={() => setSelectedProuct(product)}>
                 {t(`view`)}
               </Button>
+                <Button  variant="ghost" onClick={() => { type==="Medicine"?setSelectedEditMedicine(product): setSelectedEditTest(product)}}>
+                  {t(`edit`)}
+                </Button>
+                
             </TableCell>
           </TableRow>
         ))}
       </TableBody>
       <Toaster />
     </Table>
+    {selectedEditTest&&(
+      <EditTestModal isOpen={selectedEditTest} onClose={()=>setSelectedEditTest(null)} test={{name:selectedEditTest.name,id:selectedEditTest.id}} /> 
+    )}
+      {selectedEditMedicine&&(
+      <EditMedicineModal isOpen={selectedEditMedicine} onClose={()=>setSelectedEditMedicine(null)} medicine={{name:selectedEditMedicine.name,id:selectedEditMedicine.id,category:selectedEditMedicine.category,cost:selectedEditMedicine.cost}} /> 
+    )}
     {selectedProduct && (
-    <ProductModal type={type} product={selectedProduct} onClose={() => setSelectedProuct(null)} onAccept={handleAccept} onDecline={handleDecline} />
+    <ProductModal isAccepting={isAccepting} isDeleting={isDeleting} onDelete={handleDelete} type={type} product={selectedProduct} onClose={() => setSelectedProuct(null)} onAccept={handleAccept} onDecline={handleDecline} />
   )}
       <Pagination currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
       </>
@@ -83,6 +100,8 @@ const ProductsData=({Products,selectedProduct,setSelectedProuct,handlePageChange
 export function ProductsTable({Products,currentPage,totalPages,type,state}:IProps) {
   const [selectedProduct, setSelectedProuct] = useState<IProduct|null>(null)
 const router = useRouter();
+  const [isAccepting, setIsAccepting] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
   const [searchTerm, setSearchTerm] = useState('')
@@ -155,6 +174,7 @@ const router = useRouter();
   }
 
   const handleAccept=async()=>{
+    setIsAccepting(true)
     const res = await AcceptProduct({id:selectedProduct.id,type:type.toLowerCase()})
     if (res.success === true) {
       toast.success(res.message, {
@@ -168,11 +188,36 @@ const router = useRouter();
         position: 'bottom-center',
       }));
     }
+    setIsAccepting(false)
+    setSelectedProuct(null);
+
+  }
+  
+  const handleDelete=async()=>{
+    setIsDeleting(true)
+    const res = await DeclineProduct({id:selectedProduct.id,type:type.toLowerCase()})
+    if (res.success === true) {
+      toast.success("Deleted", {
+        duration: 2000,
+        position: 'top-center',
+      });
+      router.refresh();
+    } else {
+      res.message.forEach((err: string) => toast.error(err || 'An unexpected error occurred.', {
+        duration: 2000,
+        position: 'bottom-center',
+      }));
+    }
+    setIsDeleting(false)
+
     setSelectedProuct(null);
   }
   
 
+
   const handleDecline=async()=>{
+    setIsDeleting(true)
+
     const res = await DeclineProduct({id:selectedProduct.id,type:type.toLowerCase()})
     if (res.success === true) {
       toast.success(res.message, {
@@ -186,6 +231,8 @@ const router = useRouter();
         position: 'bottom-center',
       }));
     }
+    setIsDeleting(false)
+
     setSelectedProuct(null);
   }
   
@@ -216,9 +263,14 @@ const router = useRouter();
 setSelectedProuct={setSelectedProuct}
      selectedProduct={selectedProduct}
      state={state}
+     handleDelete={handleDelete}
+isAccepting={isAccepting}
+isDeleting={isDeleting}
         />
       ) : (
-        <ProductsData 
+        <ProductsData
+        isAccepting={isAccepting}
+isDeleting={isDeleting}
         Products={SearchResult.data}
         currentPage={SearchResult.currentPage}
         totalPages={SearchResult.totalPages}
@@ -229,6 +281,7 @@ setSelectedProuct={setSelectedProuct}
      setSelectedProuct={setSelectedProuct}
      selectedProduct={selectedProduct}
         state={state}
+        handleDelete={handleDelete}
         />
       )
     )

@@ -33,6 +33,8 @@
     "Photo": "الصورة",
     "Product_Photo": "لا يوجد صورة المنتج",
     "Accept":"موافقة",
+    "Delete":"مسح",
+
 "Decline":"رفض",
 "Categories":{
   "Cosmetics": "مستحضرات التجميل",
@@ -81,9 +83,11 @@
   },
   "Medicine_Modal":{
 "title":"اضف دواء جديد",
+"edit_title":"تعديل الدواء",
 "Name":"الاسم",
 "Photo":"الصورة",
 "Cost":"السعر",
+"edit_submit":"تعديل",
 "Category":"الفئة",
 "Medicine_Name":"اسم الدواء",
 "Select_Category":"اختار فئة",
@@ -108,6 +112,8 @@
 },
 "Test_Modal":{
 "title":"اضف تحليل جديد",
+"edit_title":"تعديل التحليل",
+"edit_submit":"تعديل",
 "Name":"الاسم",
 "Test_Name":"اسم التحليل",
 "submit":"اضافة",
@@ -145,6 +151,7 @@
     "user_email":"ايميل الحساب",
     "view":"اظهر",
     "Approved":"الموافق عليه",
+    "edit":"تعديل",
     "Pending":"تحت الانتظار",
     "No_Patients":"لا يوجد مرضي",
     "No_Tests":"لا يوجد تحاليل",

@@ -431,6 +431,64 @@ export const AddMedicine = async (formData:FormData)=>{
         console.error('Error Add Schedule:', error)
       }
     } 
+    export const UpdateTest = async (data:{name:string},id:string)=>{
+      const token = getToken();
+      const queryParams = new URLSearchParams({
+        id,
+      }).toString();
+      if (token){
+        try {
+          const response = await fetch(`/api/admin/product/test?${queryParams}`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(data),
+          })
+    
+          if (response.ok) {
+          }
+          
+          const res = await response.json();
+      return res;
+        } catch (error) {
+          console.error('Error Add Schedule:', error)
+        }
+      }
+      else {
+        console.error('No Token');
+      }
+    }
+
+    export const UpdateMedicine = async (data:{name:string,category:string,cost:number},id:string)=>{
+      const token = getToken();
+      const queryParams = new URLSearchParams({
+        id,
+      }).toString();
+      if (token){
+        try {
+          const response = await fetch(`/api/admin/product/medicine?${queryParams}`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(data),
+          })
+    
+          if (response.ok) {
+          }
+          
+          const res = await response.json();
+      return res;
+        } catch (error) {
+          console.error('Error Add Schedule:', error)
+        }
+      }
+      else {
+        console.error('No Token');
+      }
+    }
+
 
     export const UpdateProfile = async (formData:FormData)=>{
       const token = getToken();
