@@ -51,8 +51,8 @@ const ActorData=({currentPage,totalPages,Actors,role,selectedActor,setSelecetdAc
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[40%]">Name</TableHead>
-          <TableHead className="hidden sm:table-cell w-[40%]">Email</TableHead>
+          <TableHead className="w-[40%] ">Name</TableHead>
+          <TableHead className="hidden  sm:table-cell w-[40%]">Email</TableHead>
           <TableHead className="text-right w-[20%]">Actions</TableHead>
         </TableRow>
       </TableHeader>

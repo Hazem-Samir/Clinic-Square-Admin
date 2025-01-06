@@ -5,6 +5,7 @@ import {  getAllPatientsData } from '@/lib/api'
 import { StatisticsCards } from '@/components/new/statistics-cards'
 import { ActorsTable } from '@/components/new/actors-table'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs } from "@/components/ui/tabs"
 
 
 async function PatientsStats() {
@@ -36,7 +37,7 @@ async function PatientsData({ page }: { page: number }) {
    totalPages={patients.paginationResult.numberOfPages}
    Actors={patients.data}
    role='Patient'
-   state=''
+   state='true'
    />
   )
 }
@@ -49,24 +50,27 @@ export default function Page({ searchParams }: { searchParams: { page?: string  
     <ProtectedRoute allowedRoles={['admin']}>
 
 
-      <main className="flex flex-1 flex-col gap-2 p-5 sm:gap-4 sm:p-4 md:gap-8 md:p-8 ">
-      <BlurFade delay={0} className='space-y-6' inView>
-      <ActorsHeader role='Patient' />
-      <PatientsStats />
-      <Card>
-      <CardHeader>
-          <div className="flex flex-col sm:flex-row justify-between items-center  mb-4 p-4 sm:p-0">
-        <CardTitle>Patients</CardTitle>
-        </div>
-      </CardHeader>
-      <CardContent className="p-0 sm:p-6">
-           
-            <PatientsData page={page} />
-      </CardContent>
-     
-    </Card>
-      </BlurFade>
-      </main>
-    </ProtectedRoute>
+<main className="flex flex-1 flex-col gap-2 p-5 sm:gap-4 sm:p-4 md:gap-8 md:p-8 ">
+<BlurFade delay={0} className='space-y-6' inView>
+<ActorsHeader role='Patient'/>
+<Card>
+<CardHeader>
+  <CardTitle>Patients</CardTitle>
+</CardHeader>
+<CardContent className="p-0 sm:p-6">
+  <Tabs  className="w-full">
+
+     <PatientsData page={page}/>
+
+  </Tabs>
+</CardContent>
+
+</Card>
+  {/* <Suspense fallback={<Skeleton className="w-full h-[600px]" />}>
+    <doctorsData page={page} />
+  </Suspense>  */}
+</BlurFade>
+</main>
+</ProtectedRoute>
   )
 }

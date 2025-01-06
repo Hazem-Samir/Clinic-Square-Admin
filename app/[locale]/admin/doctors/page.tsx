@@ -89,12 +89,6 @@ export default function Page({ searchParams }: { searchParams: { Apage?: string,
               <TabsTrigger value="approved">Approved</TabsTrigger>
               <TabsTrigger value="pending">Pending</TabsTrigger>
             </TabsList>
-            {/* <Input
-              placeholder="Search doctors..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full sm:max-w-sm"
-            /> */}
           </div>
           <TabsContent value="approved">
            <AcceptedDoctorsData page={Apage}/>
