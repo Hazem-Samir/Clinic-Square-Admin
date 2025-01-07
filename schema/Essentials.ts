@@ -28,8 +28,8 @@ export const userTypeSchema = z.object({
     
 
    export  const SERVER_URL = process.env.AUTH_SERVER_URL || 'https://clinic-square-apis.onrender.com/api/v1';
-// export const FRONT_URL= "https://clinic-square-admin.vercel.app" 
-export const FRONT_URL= "http://localhost:3000" 
+export const FRONT_URL= "https://clinic-square-admin.vercel.app" 
+// export const FRONT_URL= "http://localhost:3000" 
 export const MODEL_URL="https://clinic-square-model.onrender.com"
 export const Doctors_Specializations=['Allergist','Cardiologist','Dermatologist','Endocrinologist','Gastroenterologist','Gynecologist','Hepatologist','hepatologist','Internal Medcine','Neurologist','Osteopathic','Otolaryngologist','Pediatrician','Phlebologist','Pulmonologist','Rheumatologists','Tuberculosis']
     export const DaySchema = z.object({
