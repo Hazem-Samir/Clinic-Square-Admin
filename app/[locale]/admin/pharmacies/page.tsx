@@ -36,7 +36,6 @@ async function PendingPharmaciesData({ page }: { page: number }) {
   
   const {data:pharmacies}=await getAllActorData(5,page,"pharmacy","false")
 
-  console.log("asds",pharmacies.data)
   return (
     
 
@@ -54,7 +53,6 @@ async function AcceptedPharmaciesData({ page }: { page: number }) {
   
   const {data:pharmacies}=await getAllActorData(5,page,"pharmacy","true")
 
-  console.log("asds",pharmacies.data)
   return (
     
 

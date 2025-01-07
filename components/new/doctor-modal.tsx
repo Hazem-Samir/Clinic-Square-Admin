@@ -7,6 +7,7 @@ import { shortName } from "@/lib/utils"
 import { ScrollArea, ScrollBar } from "../ui/scroll-area"
 import { Button } from "@/components/ui/button"
 import { getAge } from "@/utils/utils"
+import Spinner from "../Spinner"
 type role= "Patient" | "Pharmacy" | "Lab" | "Doctor" 
 
 interface IDoctor {
@@ -24,7 +25,7 @@ interface IDoctor {
   gender: string
 }
 
-export function DoctorModal({ doctor, onClose, onAccept, onDecline,role }: { doctor: IDoctor, onClose: () => void, onAccept: () => void, onDecline: () => void,role:role }) {
+  export function DoctorModal({ doctor, onClose, onAccept, onDecline,role ,isAccepting,isDeclining}: {isDeclining:boolean,isAccepting:boolean, doctor: IDoctor, onClose: () => void, onAccept: () => void, onDecline: () => void,role:role }) {
   const t = useTranslations('Actor_Modal')
   
   return (
@@ -42,7 +43,9 @@ export function DoctorModal({ doctor, onClose, onAccept, onDecline,role }: { doc
               </Avatar>
               <div>
                 <h3 className="font-bold">{doctor.name}</h3>
+                {role==="Doctor"?
                 <p className="text-sm text-gray-500">{t(`Specializations.${doctor.specialization}`)}</p>
+              :null}
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -95,11 +98,11 @@ export function DoctorModal({ doctor, onClose, onAccept, onDecline,role }: { doc
             <DialogFooter className="flex flex-col sm:flex-row gap-2 items-center mb-2 justify-center">
               {doctor.state!==undefined && !doctor.state?
               <>
-                <Button type="button"  variant="destructive" className="w-full sm:w-auto text-xs sm:text-sm" onClick={onDecline}>
-                  Decline
+                <Button type="button" disabled={isAccepting||isDeclining} variant="destructive" className="w-full sm:w-auto text-xs sm:text-sm" onClick={onDecline}>
+                  {isDeclining?<Spinner />:t(`Decline`)}
                 </Button>
-                <Button type="button" className="w-full sm:w-auto text-xs sm:text-sm " onClick={onAccept}>
-                  Accept
+                <Button type="button"  disabled={isAccepting||isDeclining} className="w-full sm:w-auto text-xs sm:text-sm " onClick={onAccept}>
+                {isAccepting?<Spinner />:t(`Accept`)}
                 </Button>
                 </>
 :null}

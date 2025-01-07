@@ -42,9 +42,11 @@ interface IActorData extends IProps{
   handlePageChange:(newPage:number)=>void
   handleAccept:()=>void
   handleDecline:()=>void
+  isAccepting:boolean
+  isDeclining:boolean
 
 }
-const ActorData=({currentPage,totalPages,Actors,role,selectedActor,setSelecetdActor,handlePageChange,handleAccept,handleDecline}:IActorData)=>{
+const ActorData=({currentPage,totalPages,Actors,role,selectedActor,setSelecetdActor,isDeclining,handlePageChange,handleAccept,handleDecline,isAccepting}:IActorData)=>{
   const t = useTranslations('table')
   
   return(
@@ -75,7 +77,7 @@ const ActorData=({currentPage,totalPages,Actors,role,selectedActor,setSelecetdAc
       <Toaster />
     </Table>
     {selectedActor && (
-    <DoctorModal role={role} doctor={selectedActor} onClose={() => setSelecetdActor(null)} onAccept={handleAccept} onDecline={handleDecline} />
+    <DoctorModal isDeclining={isDeclining} isAccepting={isAccepting} role={role} doctor={selectedActor} onClose={() => setSelecetdActor(null)} onAccept={handleAccept} onDecline={handleDecline} />
 )}
     <Pagination currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
     </> 
@@ -86,7 +88,9 @@ const ActorData=({currentPage,totalPages,Actors,role,selectedActor,setSelecetdAc
 export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
   const [selectedActor, setSelecetdActor] = useState<IDoctor|null>(null)
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false)
+  const [isSearching, setIsSearching] = useState(false)
+  const [isAccepting, setIsAccepting] = useState(false)
+  const [isDeclining, setIsDeclining] = useState(false)
 
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -95,10 +99,10 @@ export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
 
 
   const handleSearch = async (page:number) => {
-    setIsLoading(true);
+    setIsSearching(true);
     if (!searchTerm) {
       setSearchResult(null)
-      setIsLoading(false);
+      setIsSearching(false);
       return
     }
 
@@ -113,7 +117,6 @@ export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
         res = await searchActors(searchTerm, 7, page,state,`${role.toLowerCase()}`)
       }
       if (res.success === true) {
-        console.log(res.data)
         setSearchResult({
           data: res.data.data,
           totalPages: res.data.paginationResult.numberOfPages,
@@ -131,7 +134,7 @@ export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
       console.error(error)
       toast.error('An unexpected error occurred.')
     } finally {
-      setIsLoading(false);
+      setIsSearching(false);
     }
   }
 
@@ -156,6 +159,7 @@ export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
   }
 
   const handleAccept=async()=>{
+    setIsAccepting(true)
     const res = await AcceptActor({id:selectedActor.id})
     if (res.success === true) {
       toast.success(res.message, {
@@ -170,10 +174,14 @@ export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
       }));
     }
     setSelecetdActor(null);
+    setIsAccepting(false)
+
   }
   
 
   const handleDecline=async()=>{
+    setIsDeclining(true)
+
     const res = await DeclineActor({id:selectedActor.id})
     if (res.success === true) {
       toast.success(res.message, {
@@ -188,6 +196,8 @@ export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
       }));
     }
     setSelecetdActor(null);
+    setIsDeclining(false)
+
   }
   
 
@@ -200,7 +210,7 @@ export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
 <SearchBar onSearch={handleSearch} setResult={setSearchResult} searchTerm={searchTerm} setSearchTerm={setSearchTerm} title={`For_${role}`}/>
   </div>
 
-{    isLoading ? (
+{    isSearching ? (
       <div className="flex justify-center items-center p-8">
         <Spinner invert />
       </div>
@@ -217,6 +227,8 @@ export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
      selectedActor={selectedActor}
      setSelecetdActor={setSelecetdActor}
      state={state}
+     isAccepting={isAccepting}
+     isDeclining={isDeclining}
         />
       ) : (
         <ActorData 
@@ -230,6 +242,8 @@ export function ActorsTable({currentPage,totalPages,Actors,role,state}:IProps) {
         selectedActor={selectedActor}
         setSelecetdActor={setSelecetdActor}
         state={state}
+     isAccepting={isAccepting}
+     isDeclining={isDeclining}
         />
       )
     )
