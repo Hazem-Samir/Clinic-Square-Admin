@@ -41,10 +41,10 @@ const TopNavBarMenu = ({user}:IProps) => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>{t(`MyAccount`)}</DropdownMenuLabel>
-              <DropdownMenuSeparator />
+              {/* <DropdownMenuSeparator />
               <Link href={`/${user.role}/profile`} >  <DropdownMenuItem className="cursor-pointer"> {t(`Profile`)}
-            </DropdownMenuItem></Link>
-              <DropdownMenuSeparator />
+            </DropdownMenuItem></Link>*/}
+            <DropdownMenuSeparator /> 
               <DropdownMenuItem>  <form action={logout}>
               <Button variant="ghost" className="h-5" type="submit">
               {t(`Logout`)}

@@ -10,18 +10,20 @@ import { useTranslations } from 'next-intl'
 
 async function MedicinesStats() {
   
-  const [ {data:AcceptedMedicines},{data:PendingMedicines},{data:allOrders}] = await Promise.all([
+  const [ {data:AcceptedMedicines},{data:PendingMedicines}
+    // ,{data:allOrders}
+  ] = await Promise.all([
     getAllProductData(500000,1,"medicines","true"),
     getAllProductData(500000,1,"medicines","false"),
-    getAllOrders(50000,1)
+    // getAllOrders(50000,1)
   ])
   return (
     
     <StatisticsCards stats={[
-      {title:"Total Medicines",icon:"Users",value:(AcceptedMedicines.data.length+PendingMedicines.data.length),paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Approved Medicines",icon:"UserCheck",value:AcceptedMedicines.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Pending Medicines",icon:"UserPlus",value:PendingMedicines.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Total Orders",icon:"UserPlus",value:allOrders.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
+      {title:"Total_Medicines",icon:"Pill",value:(AcceptedMedicines.data.length+PendingMedicines.data.length),paragragph:"On_The_App"},
+      {title:"Approved_Medicines",icon:"Pill",value:AcceptedMedicines.data.length,paragragph:"On_The_App"},
+      {title:"Pending_Medicines",icon:"Pill",value:PendingMedicines.data.length,paragragph:"On_The_App"},
+      // {title:"Total Orders",icon:"UserPlus",value:allOrders.data.length,paragragph:"On_The_App"},
   
   
   

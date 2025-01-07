@@ -22,6 +22,49 @@
       "For_Medicine":"Search For Medicine"
       
     },
+    "Dashboard":{
+      "All_Reservations":"All Reservations",
+      "All_Orders":"All Orders",
+      "REM":"Revenue Every Month",
+      "in":"in",
+      "Total_Revenue":"Total Revnue",
+      "Jan-Dec":"January - December",
+      "revenue":"revenue",
+      "New_Patients":"New Patients",
+      "New_Doctors":"New Doctors",
+      "New_Labs":"New Labs",
+      "New_Pharmacies":"New Pharmacies",
+      "Pending_Labs":"Pending Labs",
+      "Pending_Doctors":"Pending Doctors",
+      "Pending_Pharmacies":"Pending Pharmacies",
+      "Total_Patients":"Total Patients",
+      "reservation":"reservations",
+      "Orders":"Orders",
+      "order":"orders"
+    },
+    
+    "Statistics_Cards":{
+      "Total_Labs":"Total Labs",
+      "Approved_Labs":"Approved Labs",
+      "Pending_Labs":"Pending Labs",
+      "Total_Reservations":"Total Reservations",
+      "On_The_App":"On The App",
+      "Total_Patients":"Total Patients",
+      "Total_Doctors":"Total Doctors",
+      "Approved_Doctors":"Approved Doctors",
+      "Pending_Doctors":"Pending Doctors",
+      "Total_Pharmacies":"Total Pharmacies",
+      "Approved_Pharmacies":"Approved Pharmacies",
+      "Pending_Pharmacies":"Pending Pharmacies",
+      "Total_Orders":"Total Orders",
+      "Total_Medicines":"Total Medicines",
+      "Approved_Medicines":"Approved Medicines",
+      "Pending_Medicines":"Pending Medicines",
+      "Total_Tests":"Total Tests",
+      "Approved_Tests":"Approved Tests",
+      "Pending_Tests":"Pending Tests"
+
+    },
     "Product_Modal": {
       "Test_Details": "Test Details",
       "Medicine_Details": "Medicine Details",

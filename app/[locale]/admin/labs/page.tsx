@@ -15,13 +15,14 @@ async function LabsStats() {
     getAllActorData(500000,1,"lab","false"),
     getAllReservations(50000,1,"lab")
   ])
+
   return (
     
     <StatisticsCards stats={[
-      {title:"Total Labs",icon:"Users",value:(AcceptedLabs.data.length+PendingLabs.data.length),paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Approved Labs",icon:"UserCheck",value:AcceptedLabs.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Pending Labs",icon:"UserPlus",value:PendingLabs.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Total Reservations",icon:"UserPlus",value:allReservations.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
+      {title:"Total_Labs",icon:"Microscope",value:(AcceptedLabs.data.length+PendingLabs.data.length),paragragph:"On_The_App"},
+      {title:"Approved_Labs",icon:"Microscope",value:AcceptedLabs.data.length,paragragph:"On_The_App"},
+      {title:"Pending_Labs",icon:"Microscope",value:PendingLabs.data.length,paragragph:"On_The_App"},
+      {title:"Total_Reservations",icon:"UserPlus",value:allReservations.data.length,paragragph:"On_The_App"},
   
   
   
@@ -36,7 +37,6 @@ async function PendingLabsData({ page }: { page: number }) {
   
   const {data:labs}=await getAllActorData(5,page,"lab","false")
 
-  console.log("asds",labs.data)
   return (
     
 
@@ -54,7 +54,6 @@ async function AcceptedLabsData({ page }: { page: number }) {
   
   const {data:labs}=await getAllActorData(5,page,"lab","true")
 
-  console.log("asds",labs.data)
   return (
     
 

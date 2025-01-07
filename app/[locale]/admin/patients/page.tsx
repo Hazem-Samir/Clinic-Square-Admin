@@ -14,7 +14,7 @@ async function PatientsStats() {
   const  {data:allPatients} = await getAllPatientsData(500000,1)
   return (
     <StatisticsCards stats={[
-      {title:"Total Patients",icon:"Users",value:allPatients.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
+      {title:"Total_Patients",icon:"Users",value:allPatients.data.length,paragragph:"On_The_App"},
       // {title:"Approved Labs",icon:"UserCheck",value:allLabs.data.filter((d) => d.state === true).length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
       // {title:"Pending Labs",icon:"UserPlus",value:allLabs.data.filter((d) => d.state === false).length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
       // {title:"Total Reservations",icon:"UserPlus",value:allReservations.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},

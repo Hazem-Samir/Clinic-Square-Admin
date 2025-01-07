@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/chart"
 import { Bar, BarChart, Line, LineChart, RadialBar,
   RadialBarChart,PolarGrid,PolarRadiusAxis,Label,XAxis, CartesianGrid, LabelList} from "recharts"
+  import { useTranslations } from 'next-intl'
 
 
 
@@ -26,16 +27,21 @@ interface IProps{
   titles:string[]
   descriptions:string[]
   role:"Doctor" | "Lab" | "Pharmacie" | "Patient" 
+  year:number
+
 }
 const colors={Doctor:"hsl(var(--chart-1))",Lab:"hsl(var(--chart-2))",Pharmacie:"hsl(var(--chart-3))",Patient:"hsl(var(--chart-4))"}
-export function DashboardCharts({chartsData,titles,descriptions,role}:IProps) {
+export function DashboardCharts({chartsData,titles,descriptions,role,year}:IProps) {
+  const tActors = useTranslations('actors')
+  const t = useTranslations('Dashboard')
+
   const chartConfig = {
     actors: {
-      label: `${role}s`,
+      label: `${tActors(`${role}s`)}`,
       color: `${colors[role]}`,
     },
     reservations: {
-      label: `${role==="Pharmacie"?"Order":"Reservation"}s`,
+      label: `${t(`${role==="Pharmacie"?"order":"reservation"}`)}`,
       color: `${colors[role]}`,
     },
    
@@ -46,8 +52,8 @@ export function DashboardCharts({chartsData,titles,descriptions,role}:IProps) {
     <div className="grid gap-4  md:grid-cols-2 xl:grid-cols-3">
     <Card className="col-span-2  row-span-0">
   <CardHeader>
-    <CardTitle>{titles[0]}</CardTitle>
-    <CardDescription>{descriptions[0]}</CardDescription>
+    <CardTitle>{tActors(`${titles[0]}`)}</CardTitle>
+    <CardDescription>{`${t(`${descriptions[0]}`)} ${year}`}</CardDescription>
   </CardHeader>
   <CardContent >
     <ChartContainer config={chartConfig}>
@@ -91,8 +97,8 @@ export function DashboardCharts({chartsData,titles,descriptions,role}:IProps) {
 
     <Card  >
       <CardHeader>
-        <CardTitle>{titles[1]}</CardTitle>
-        <CardDescription>{descriptions[1]}</CardDescription>
+        <CardTitle>{t(`${titles[1]}`)}</CardTitle>
+        <CardDescription>{`${t(`${descriptions[1]}`)} ${year}`}</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -193,7 +199,7 @@ export function DashboardCharts({chartsData,titles,descriptions,role}:IProps) {
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          New {descriptions[2][1]}
+                          {t(`New_${descriptions[2][1]}`)}
                         </tspan>
                       </text>
                     )
@@ -209,7 +215,7 @@ export function DashboardCharts({chartsData,titles,descriptions,role}:IProps) {
          The Pending actors
         </div> */}
         <div className="leading-none text-muted-foreground">
-        {descriptions[2][0]}
+        {t(`${descriptions[2][0]}`)}
         </div>
       </CardFooter>
     </Card>

@@ -33,7 +33,7 @@ const Reservations = monthNames.map((key, index) => {
 });
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Patients',"All Reservations"]} descriptions={[`January - December ${parseInt(year)}`,`January - December ${parseInt(year)}`,["All Patients","Patients"]]} role='Patient'/>
+  <DashboardCharts year={parseInt(year)} chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Patients',"All_Reservations"]} descriptions={[`Jan-Dec`,`Jan-Dec`,["Total_Patients","Patients"]]} role='Patient'/>
 
   )
 }
@@ -63,7 +63,7 @@ const Reservations = monthNames.map((key, index) => {
 });
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Labs',"All Reservations"]} descriptions={[`January - December ${parseInt(year)}`,`January - December ${parseInt(year)}`,["The Pending Labs","Labs"]]} role='Lab'/>
+  <DashboardCharts year={parseInt(year)} chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length}]]} titles={['Labs',"All_Reservations"]} descriptions={[`Jan-Dec`,`Jan-Dec`,["Pending_Labs","Labs"]]} role='Lab'/>
 
   )
 }
@@ -92,7 +92,7 @@ const Reservations = monthNames.map((key, index) => {
 });
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Doctors',"All Reservations"]} descriptions={[`January - December ${parseInt(year)}`,`January - December ${parseInt(year)}`,["The Pending Doctors","Doctors"]]} role='Doctor'/>
+  <DashboardCharts year={parseInt(year)} chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Doctors',"All_Reservations"]} descriptions={[`Jan-Dec`,`Jan-Dec`,["Pending_Doctors","Doctors"]]} role='Doctor'/>
 
   )
 }
@@ -122,7 +122,7 @@ const Reservations = monthNames.map((key, index) => {
 });
   return (
 
-  <DashboardCharts chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Pharmacies',"All Orders"]} descriptions={[`January - December ${parseInt(year)}`,`January - December ${parseInt(year)}`,["The Pending Pharmacies","Pharmacies"]]} role='Pharmacie'/>
+  <DashboardCharts year={parseInt(year)} chartsData={[Actors,Reservations,[{pendingActors:pendingActors.data.length,}]]} titles={['Pharmacies',"All_Orders"]} descriptions={[`Jan-Dec`,`Jan-Dec`,["Pending_Pharmacies","Pharmacies"]]} role='Pharmacie'/>
 
   )
 }

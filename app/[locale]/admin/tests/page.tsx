@@ -18,10 +18,10 @@ async function TestsStats() {
   return (
     
     <StatisticsCards stats={[
-      {title:"Total Tests",icon:"Users",value:(AcceptedTests.data.length+tests.data.length),paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Approved Tests",icon:"UserCheck",value:AcceptedTests.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Pending Tests",icon:"UserPlus",value:tests.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      // {title:"Total Reservations",icon:"UserPlus",value:allReservations.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
+      {title:"Total_Tests",icon:"FlaskConical",value:(AcceptedTests.data.length+tests.data.length),paragragph:"On_The_App"},
+      {title:"Approved_Tests",icon:"FlaskConical",value:AcceptedTests.data.length,paragragph:"On_The_App"},
+      {title:"Pending_Tests",icon:"FlaskConical",value:tests.data.length,paragragph:"On_The_App"},
+      // {title:"Total Reservations",icon:"UserPlus",value:allReservations.data.length,paragragph:"On_The_App"},
   
   
   

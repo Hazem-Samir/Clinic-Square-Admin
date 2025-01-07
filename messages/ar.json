@@ -8,7 +8,7 @@
   "nav":{
     "Home":"الصفحة الرئيسية",
     "Patients":"المرضي",
-    "Doctors":"الدكاترة",
+    "Doctors":"الاطباء",
     "Labs":"المعامل",
     "Pharmacies":"الصيدليات",
     "Medicines":"الادوية",
@@ -16,7 +16,7 @@
     },
   "search":{
     "For_Patient":"ابحث عن مريض",
-    "For_Doctor":"ابحص عن دكتور",
+    "For_Doctor":"ابحث عن طبيب",
     "For_Question":"ابحث عن سؤال",
     "For_Lab":"ابحث عن معمل",
     "For_Pharmacie":"ابحث عن صيدلية",
@@ -24,6 +24,27 @@
   "For_Medicine":"ابحث عن ادوية"
 
    
+  },
+  "Statistics_Cards": {
+    "Total_Labs": "إجمالي المعامل",
+    "Approved_Labs": "المعامل الموافق عليها",
+    "Pending_Labs": "المعامل قيد الانتظار",
+    "Total_Reservations": "إجمالي الحجوزات",
+    "On_The_App": "على التطبيق",
+    "Total_Patients": "إجمالي المرضى",
+    "Total_Doctors": "إجمالي الأطباء",
+    "Approved_Doctors": "الأطباء الموافق عليهم",
+    "Pending_Doctors": "الأطباء قيد الانتظار",
+    "Total_Pharmacies": "إجمالي الصيدليات",
+    "Approved_Pharmacies": "الصيدليات الموافق عليها",
+    "Pending_Pharmacies": "الصيدليات قيد الانتظار",
+    "Total_Orders": "إجمالي الطلبات",
+    "Total_Medicines": "إجمالي الأدوية",
+    "Approved_Medicines": "الأدوية الموافق عليها",
+    "Pending_Medicines": "الأدوية قيد الانتظار",
+    "Total_Tests": "إجمالي الفحوصات",
+    "Approved_Tests": "الفحوصات الموافق عليها",
+    "Pending_Tests": "الفحوصات قيد الانتظار"
   },
   "Product_Modal": {
     "Test_Details": "تفاصيل التحليل",
@@ -48,7 +69,7 @@
 }
   },
   "Actor_Modal": {
-    "Doctor_Details": "تفاصيل الدكتور",
+    "Doctor_Details": "تفاصيل الطبيب",
     "Lab_Details": "تفاصيل المعمل",
     "Pharamcy_Details": "تفاصيل الصيدلية",
     "Patient_Details": "تفاصيل المريض",
@@ -63,22 +84,22 @@
 "female":"انثي",
 
     "Specializations": {
-      "Allergist": "دكتور حساسية",
-      "Cardiologist": "دكتور قلب",
-      "Dermatologist": "دكتور جلدية",
-      "Endocrinologist": "دكتور الغدد الصماء",
-      "Gastroenterologist": "دكتور الجهاز الهضمي",
-      "Gynecologist": "دكتور النساء والتوليد",
-      "Hepatologist": "دكتور الكبد",
-      "Internal Medcine": "دكتور باطني",
-      "Neurologist": "دكتور أعصاب",
-      "Osteopathic": "دكتور عظام",
-      "Otolaryngologist": "دكتور الأنف والأذن والحنجرة",
-      "Pediatrician": "دكتور أطفال",
-      "Phlebologist": "دكتور الأوردة",
-      "Pulmonologist": "دكتور رئة",
-      "Rheumatologists": "دكتور روماتيزم",
-      "Tuberculosis": "دكتور سل"
+      "Allergist": "طبيب حساسية",
+      "Cardiologist": "طبيب قلب",
+      "Dermatologist": "طبيب جلدية",
+      "Endocrinologist": "طبيب الغدد الصماء",
+      "Gastroenterologist": "طبيب الجهاز الهضمي",
+      "Gynecologist": "طبيب النساء والتوليد",
+      "Hepatologist": "طبيب الكبد",
+      "Internal Medcine": "طبيب باطني",
+      "Neurologist": "طبيب أعصاب",
+      "Osteopathic": "طبيب عظام",
+      "Otolaryngologist": "طبيب الأنف والأذن والحنجرة",
+      "Pediatrician": "طبيب أطفال",
+      "Phlebologist": "طبيب الأوردة",
+      "Pulmonologist": "طبيب رئة",
+      "Rheumatologists": "طبيب روماتيزم",
+      "Tuberculosis": "طبيب سل"
     }
   },
   "Medicine_Modal":{
@@ -126,7 +147,7 @@
 
   "header":{
     "Patients_Management":"ادارة المرضي",
-    "Doctors_Management":"ادارة الدكاترة",
+    "Doctors_Management":"ادارة الاطباء",
     "Labs_Management":"ادارة المعامل",
     "Pharmacies_Management":"ادارة الصيدليات",
         "Tests_Management":"ادارة التحاليل",
@@ -137,7 +158,7 @@
   },
 "actors":{
   "Patients":"المرضي",
-  "Doctors":"الدكاترة",
+  "Doctors":"الاطباء",
   "Labs":"المعامل",
   "Pharmacies":"الصيدليات",
   "Medicines":"الادوية",
@@ -152,7 +173,7 @@
     "view":"اظهر",
     "Approved":"الموافق عليه",
     "edit":"تعديل",
-    "Pending":"تحت الانتظار",
+    "Pending":"قيد الانتظار",
     "No_Patients":"لا يوجد مرضي",
     "No_Tests":"لا يوجد تحاليل",
     "No_Medicines":"لا يوجد ادوية",
@@ -176,13 +197,29 @@
     "Dark":"داكن",
     "Light":"فاتح"     
   },
+  "Dashboard": {
+    "All_Reservations": "جميع الحجوزات",
+    "All_Orders": "جميع الطلبات",
+    "Jan-Dec": "يناير - ديسمبر",
+    "New_Patients": "المرضى الجدد",
+    "New_Doctors": "الأطباء الجدد",
+    "New_Labs": "المعامل الجديدة",
+    "New_Pharmacies": "الصيدليات الجديدة",
+    "Pending_Labs": "المعامل قيد الانتظار",
+    "Pending_Doctors": "الأطباء قيد الانتظار",
+    "Pending_Pharmacies": "الصيدليات قيد الانتظار",
+    "Total_Patients": "إجمالي المرضى",
+    "reservation": "حجوزات",
+    "Orders": "الطلبات",
+    "order": "طلب"
+  },
   "TopBarDropMenu":{
     "MyAccount":"حسابي",
     "Profile":"الملف الشخصي",
     "Logout":"تسجيل الخروج"
   },
       "doctor": {
-        "title": "لوحة تحكم الدكتور"
+        "title": "لوحة تحكم الطبيب"
       },
       "schedule": {
         "title": "تحديد جدولك",

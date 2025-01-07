@@ -18,10 +18,10 @@ async function PharmaciesStats() {
   return (
     
     <StatisticsCards stats={[
-      {title:"Total Pharmacies",icon:"Users",value:(AcceptedPharmacies.data.length+PendingPharmacies.data.length),paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Approved Pharmacies",icon:"UserCheck",value:AcceptedPharmacies.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Pending Pharmacies",icon:"UserPlus",value:PendingPharmacies.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Total Orders",icon:"UserPlus",value:allReservations.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
+      {title:"Total_Pharmacies",icon:"Hospital",value:(AcceptedPharmacies.data.length+PendingPharmacies.data.length),paragragph:"On_The_App"},
+      {title:"Approved_Pharmacies",icon:"Hospital",value:AcceptedPharmacies.data.length,paragragph:"On_The_App"},
+      {title:"Pending_Pharmacies",icon:"Hospital",value:PendingPharmacies.data.length,paragragph:"On_The_App"},
+      {title:"Total_Orders",icon:"UserPlus",value:allReservations.data.length,paragragph:"On_The_App"},
   
   
   

@@ -18,10 +18,10 @@ async function DoctorsStats() {
   return (
     
     <StatisticsCards stats={[
-      {title:"Total Doctors",icon:"Users",value:(AcceptedDoctors.data.length+PendingDoctors.data.length),paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Approved Doctors",icon:"UserCheck",value:AcceptedDoctors.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Pending Doctors",icon:"UserPlus",value:PendingDoctors.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
-      {title:"Total Reservations",icon:"UserPlus",value:allReservations.data.length,paragragph:(<p className="text-xs text-muted-foreground">On The App</p>)},
+      {title:"Total_Doctors",icon:"Users",value:(AcceptedDoctors.data.length+PendingDoctors.data.length),paragragph:"On_The_App"},
+      {title:"Approved_Doctors",icon:"UserCheck",value:AcceptedDoctors.data.length,paragragph:"On_The_App"},
+      {title:"Pending_Doctors",icon:"UserPlus",value:PendingDoctors.data.length,paragragph:"On_The_App"},
+      {title:"Total_Reservations",icon:"UserPlus",value:allReservations.data.length,paragragph:"On_The_App"},
   
   
   
