@@ -8,5 +8,5 @@ export async function logout() {
   await Logout()
   cookies().delete('user')
   cookies().delete('token')
-  redirect('/login')
+  redirect('/en/login')
 }
