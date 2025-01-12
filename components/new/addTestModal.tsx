@@ -46,7 +46,6 @@ export function AddTestModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
         position: 'bottom-center',
       });
       form.reset({   name: ""})
-      onClose()
       router.refresh();
     }
     else {
@@ -55,6 +54,7 @@ export function AddTestModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
         position: 'bottom-center',
       }))
     }
+    onClose()
     setIsLoading(false);
 
     // Here you would typically send the data to your backend
@@ -85,9 +85,9 @@ export function AddTestModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
            
            <Button disabled={isLoading} type="submit">{isLoading?<Spinner />:t(`submit`)}</Button>
           </form>
+      <Toaster />
         </Form>
       </DialogContent>
-      <Toaster />
     </Dialog>
   )
 }

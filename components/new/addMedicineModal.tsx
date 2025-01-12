@@ -80,7 +80,6 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
           category: "",
         })
         setPhotoPreview(null)
-        onClose()
         router.refresh()
       } else {
         res.error.forEach((err: string) => 
@@ -93,6 +92,8 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
     } catch (error) {
       toast.error('Failed to upload image. Please try again.')
     } finally {
+      onClose()
+
       setIsLoading(false)
     }
   }
@@ -217,9 +218,9 @@ export function AddMedicineModal({ isOpen, onClose }: { isOpen: boolean; onClose
               {isLoading ? <Spinner /> : t(`submit`)}
             </Button>
           </form>
+      <Toaster />
         </Form>
       </DialogContent>
-      <Toaster />
     </Dialog>
   )
 }

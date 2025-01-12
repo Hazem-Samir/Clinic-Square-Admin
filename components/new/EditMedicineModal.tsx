@@ -70,7 +70,6 @@ export function EditMedicineModal({ isOpen, onClose,medicine }: {medicine:{id:st
         form.reset({
         ...values
         })
-        onClose()
         router.refresh()
       } else {
         res.error.forEach((err: string) => 
@@ -83,6 +82,8 @@ export function EditMedicineModal({ isOpen, onClose,medicine }: {medicine:{id:st
     } catch (error) {
       toast.error('Failed to upload image. Please try again.')
     } finally {
+      onClose()
+
       setIsLoading(false)
     }
   }
@@ -155,9 +156,9 @@ export function EditMedicineModal({ isOpen, onClose,medicine }: {medicine:{id:st
               {isLoading ? <Spinner /> : t(`edit_submit`)}
             </Button>
           </form>
+      <Toaster />
         </Form>
       </DialogContent>
-      <Toaster />
     </Dialog>
   )
 }

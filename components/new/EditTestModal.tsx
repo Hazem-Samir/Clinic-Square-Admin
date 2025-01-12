@@ -46,7 +46,6 @@ console.log(test)
         position: 'bottom-center',
       });
       form.reset({  ...values})
-      onClose()
       router.refresh();
     }
     else {
@@ -55,6 +54,7 @@ console.log(test)
         position: 'bottom-center',
       }))
     }
+    onClose()
     setIsLoading(false);
 
     // Here you would typically send the data to your backend
@@ -85,9 +85,9 @@ console.log(test)
            
            <Button type="submit" disabled={isLoading}>{isLoading?<Spinner />:t(`edit_submit`)}</Button>
           </form>
+      <Toaster />
         </Form>
       </DialogContent>
-      <Toaster />
     </Dialog>
   )
 }
