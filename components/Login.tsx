@@ -34,7 +34,7 @@ const loginSchema = z.object({
 export default function Login() {
   const [isLoading,SetIsLoading]=useState(false);
   const router = useRouter()
-
+  const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -77,7 +77,7 @@ export default function Login() {
       <>
      
      
-          <div className="text-center space-y-2">
+     <div className="text-center space-y-2">
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-balance text-muted-foreground">
               Enter your email below to login to your account
@@ -112,8 +112,28 @@ export default function Login() {
                         Forgot your password?
                       </Link>
                     </div>
-                    <FormControl>
-                      <Input disabled={isLoading}  type="password" {...field} />
+                    <FormControl >
+                      <div className="relative">
+
+                      <Input  type={showPassword ? "text" : "password"} disabled={isLoading}   {...field} />
+                      <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+            onClick={() => setShowPassword(!showPassword)}
+            disabled={isLoading}
+          >
+            {showPassword ? (
+              <EyeOff className="h-4 w-4 text-muted-foreground" />
+            ) : (
+              <Eye className="h-4 w-4 text-muted-foreground" />
+            )}
+            <span className="sr-only">
+              {showPassword ? "Hide password" : "Show password"}
+            </span>
+          </Button>
+            </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -124,7 +144,6 @@ export default function Login() {
               </Button>
             </form>
           </Form>
-         
           
           <Toaster />
         

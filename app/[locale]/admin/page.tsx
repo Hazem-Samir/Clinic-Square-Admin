@@ -4,6 +4,7 @@ import { DashboardCharts } from '@/components/new/dashboard-charts'
 import { getAllActorData, getAllActorStats, getAllOrdersStats, getAllPatientsData, getAllReservationsStats, getPatientStats } from '@/lib/api'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import YearSelector from "@/components/year-selector"
+import { useTranslations } from 'next-intl'
 
 const monthNames = [
   "January", "February", "March", "April", "May", "June",
@@ -131,6 +132,7 @@ const Reservations = monthNames.map((key, index) => {
 
 export default function HomePage({ searchParams }: { searchParams: { year?: string } }) {
   const year = searchParams.year ||`${new Date().getFullYear()}`
+   const t = useTranslations('actors')
  
   return (
     <ProtectedRoute allowedRoles={['admin']}>  
@@ -142,10 +144,10 @@ export default function HomePage({ searchParams }: { searchParams: { year?: stri
         <div className="flex flex-col sm:flex-row justify-center items-center space-x-4 mb-6 sm:mb-4 p-4 sm:p-0">
 
             <TabsList className="grid  grid-cols-1 md:grid-cols-4 mb-20 md:mb-4 md:space-y-0 space-y-2 md:bg-muted bg-transparent mr-0">
-              <TabsTrigger className="data-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Patients">Patients</TabsTrigger>
-              <TabsTrigger className="data-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Doctors">Doctors</TabsTrigger>
-              <TabsTrigger className="data-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Labs">Labs</TabsTrigger>
-              <TabsTrigger className="data-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Pharmacies">Pharmacies</TabsTrigger>
+              <TabsTrigger className="data-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Patients">{t(`Patients`)}</TabsTrigger>
+              <TabsTrigger className="data-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Doctors">{t(`Doctors`)}</TabsTrigger>
+              <TabsTrigger className="data-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Labs">{t(`Labs`)}</TabsTrigger>
+              <TabsTrigger className="data-[state=active]:bg-teal-400 data-[state=active]:text-primary-foreground" value="Pharmacies">{t(`Pharmacies`)}</TabsTrigger>
             </TabsList>
             </div>
             <div className="flex justify-end">
